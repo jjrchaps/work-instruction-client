@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import customtypes.POUI;
 import listeners.NextButtonListener;
+import listeners.PreviousButtonListener;
 
 /**
  * This view will display the POUI images as well as provide the basic interface for iterating through
@@ -52,6 +53,8 @@ public class POUIView {
 		// create and add previous button to panel
 		JButton previous = new JButton("Previous");
 		previous.setAlignmentX(JButton.LEFT_ALIGNMENT);
+		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui);
+		previous.addActionListener(previousListener);
 		buttonPane.add(previous);
 		
 		buttonPane.add(Box.createHorizontalGlue());
