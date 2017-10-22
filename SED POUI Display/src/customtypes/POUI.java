@@ -19,7 +19,13 @@ public class POUI {
 
 	// Iterator to go over steps in order when build is taking place
 	ListIterator<BufferedImage> iterator;
-
+	
+	// setting up 2 boolean values to track whether previous or next was most recently called
+	// this will correct an issue causing the same img to be returned when alternating between
+	// the previous and next buttons
+	private boolean nextWasCalled;
+	private boolean previousWasCalled;
+	
 	/**
 	 * Constructor for POUI. Will read in number the images in order of steps and store within object
 	 * @param numberOfSteps The number of steps (and images) to be completed for this SED Assembly
@@ -34,6 +40,8 @@ public class POUI {
 			images.add(img);
 		}
 		iterator = (ListIterator<BufferedImage>) images.iterator();
+		nextWasCalled = false;
+		previousWasCalled = false;
 	}
 	
 	/**
@@ -49,7 +57,12 @@ public class POUI {
 	 * @return A buffered image if there are any more steps, null otherwise
 	 */
 	public BufferedImage nextStep() {
+		if (previousWasCalled) {
+			iterator.next();
+			previousWasCalled = false;
+		}
 		if (iterator.hasNext()) {
+			nextWasCalled = true;
 			return iterator.next();
 		}
 		else {
@@ -58,11 +71,16 @@ public class POUI {
 	}
 
 	/**
-	 * If there is a previou step, it will be returned. Else it will return null
+	 * If there is a previous step, it will be returned. Else it will return null
 	 * @return A buffered image if there are any previous steps, null otherwise
 	 */
 	public BufferedImage previousStep() {
+		if (nextWasCalled) {
+			iterator.previous();
+			nextWasCalled = false;
+		}
 		if (iterator.hasPrevious()) {
+			previousWasCalled = true;
 			return iterator.previous();
 		}
 		else {
@@ -77,8 +95,6 @@ public class POUI {
 	public boolean hasPrevious() {
 		return iterator.hasPrevious();
 	}
-	// TODO: methods to return next step, go back a step, etc.
-	// TODO: equals method that will simply check if the SED ID number is the same, we don't need to check more than that.
 
 	public static void main(String[] args) {
 		try {
