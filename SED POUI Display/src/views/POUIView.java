@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import customtypes.POUI;
+import listeners.NextButtonListener;
 
 /**
  * This view will display the POUI images as well as provide the basic interface for iterating through
@@ -58,6 +59,8 @@ public class POUIView {
 		// create and add next button to panel
 		JButton next = new JButton("Next");
 		next.setAlignmentX(JButton.RIGHT_ALIGNMENT);
+		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui);
+		next.addActionListener(nextListener);
 		buttonPane.add(next);
 		
 		// add image and buttons to mainPanel
