@@ -13,6 +13,11 @@ import javax.swing.JTextField;
 import listeners.SubmitButtonListener;
 import listeners.StartupTextListener;
 
+/**
+ * StartUp view is what the user will first see when the program is launched. It has a quick explanation and welcome
+ * message, and then a box to enter the SED product ID of the unit they are about to build.
+ * @author jameschapman
+ */
 public class StartupView {
 	private JFrame mainFrame;
 	
@@ -23,6 +28,11 @@ public class StartupView {
 		mainFrame.pack();
 	}
 	
+	/**
+	 * Creates the panel with the proper formats, as well as creates all components
+	 * and adds the relevant listeners to them
+	 * @return A completed JPanel ready to be added to a frame and displayed
+	 */
 	private JPanel createPanel() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
