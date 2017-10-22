@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import customtypes.POUI;
 
@@ -30,7 +29,6 @@ public class POUIView {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.add(createPanel());
 		mainFrame.pack();
-		mainFrame.setVisible(true);
 	}
 
 	private JPanel createPanel() {
@@ -69,11 +67,20 @@ public class POUIView {
 		return mainPanel;
 	}
 	
+	public void setVisible() {
+		mainFrame.setVisible(true);
+	}
+	
+	public void hideView() {
+		mainFrame.setVisible(false);
+	}
+	
 	public static void main(String[] args) {
 		POUI test;
 		try {
 			test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
 			POUIView testView = new POUIView(test);
+			testView.setVisible();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
