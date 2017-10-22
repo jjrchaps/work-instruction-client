@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 import javax.imageio.ImageIO;
@@ -16,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class POUI {
 	// Container to store all images in order within the object
-	ArrayList<BufferedImage> images;
+	LinkedList<BufferedImage> images;
 
 	// Iterator to go over steps in order when build is taking place
 	ListIterator<BufferedImage> iterator;
@@ -28,7 +29,7 @@ public class POUI {
 	 * supplied should end with a forward slash
 	 */
 	public POUI(int numberOfSteps, String imageLocation) throws IOException {
-		images = new ArrayList<BufferedImage>();
+		images = new LinkedList<BufferedImage>();
 		for (int i = 1; i <= numberOfSteps; i++) {
 			String fileName = imageLocation + "step" + Integer.toString(i) + ".jpg";
 			BufferedImage img = ImageIO.read(new File(fileName));
