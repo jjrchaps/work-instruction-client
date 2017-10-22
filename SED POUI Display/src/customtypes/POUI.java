@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import javax.imageio.ImageIO;
 
@@ -15,7 +17,10 @@ import javax.imageio.ImageIO;
 public class POUI {
 	// Container to store all images in order within the object
 	ArrayList<BufferedImage> images;
-	
+
+	// Iterator to go over steps in order when build is taking place
+	ListIterator<BufferedImage> iterator;
+
 	/**
 	 * Constructor for POUI. Will read in number the images in order of steps and store within object
 	 * @param numberOfSteps The number of steps (and images) to be completed for this SED Assembly
@@ -29,12 +34,33 @@ public class POUI {
 			BufferedImage img = ImageIO.read(new File(fileName));
 			images.add(img);
 		}
+		iterator = (ListIterator<BufferedImage>) images.iterator();
 	}
-	
-	// TODO: number of steps required to build
+
+	public BufferedImage startBuild() {
+		return iterator.next();
+	}
+
+	public BufferedImage nextStep() {
+		if (iterator.hasNext()) {
+			return iterator.next();
+		}
+		else {
+			return null;
+		}
+	}
+
+	public BufferedImage previousStep() {
+		if (iterator.hasPrevious()) {
+			return iterator.previous();
+		}
+		else {
+			return null;
+		}
+	}
 	// TODO: methods to return next step, go back a step, etc.
 	// TODO: equals method that will simply check if the SED ID number is the same, we don't need to check more than that.
-	
+
 	public static void main(String[] args) {
 		try {
 			POUI test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
