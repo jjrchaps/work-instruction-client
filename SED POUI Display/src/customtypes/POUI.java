@@ -36,11 +36,19 @@ public class POUI {
 		}
 		iterator = (ListIterator<BufferedImage>) images.iterator();
 	}
-
+	
+	/**
+	 * Starts the build, by returning the first step
+	 * @return A buffered image that is the first step of the build process
+	 */
 	public BufferedImage startBuild() {
 		return iterator.next();
 	}
 
+	/**
+	 * If there is a next step, it will be returned. Else it will return null
+	 * @return A buffered image if there are any more steps, null otherwise
+	 */
 	public BufferedImage nextStep() {
 		if (iterator.hasNext()) {
 			return iterator.next();
@@ -50,6 +58,10 @@ public class POUI {
 		}
 	}
 
+	/**
+	 * If there is a previou step, it will be returned. Else it will return null
+	 * @return A buffered image if there are any previous steps, null otherwise
+	 */
 	public BufferedImage previousStep() {
 		if (iterator.hasPrevious()) {
 			return iterator.previous();
@@ -57,6 +69,14 @@ public class POUI {
 		else {
 			return null;
 		}
+	}
+	
+	public boolean hasNext() {
+		return iterator.hasNext();
+	}
+	
+	public boolean hasPrevious() {
+		return iterator.hasPrevious();
 	}
 	// TODO: methods to return next step, go back a step, etc.
 	// TODO: equals method that will simply check if the SED ID number is the same, we don't need to check more than that.
