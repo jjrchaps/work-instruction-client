@@ -10,8 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import listeners.SubmitButtonListener;
-import listeners.StartupTextListener;
+import listeners.StartupListener;
 
 /**
  * StartUp view is what the user will first see when the program is launched. It has a quick explanation and welcome
@@ -51,12 +50,12 @@ public class StartupView {
 		
 		JTextField unitIDInput = new JTextField("Enter ID here");
 		unitIDInput.setAlignmentX(JTextField.CENTER_ALIGNMENT);
-		unitIDInput.addKeyListener(new StartupTextListener(unitIDInput));
+		unitIDInput.addKeyListener(new StartupListener(unitIDInput));
 		mainPanel.add(unitIDInput);
 
 		JButton submitButton = new JButton("Submit");
 		submitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		SubmitButtonListener listener = new SubmitButtonListener(unitIDInput);
+		StartupListener listener = new StartupListener(unitIDInput);
 		submitButton.addActionListener(listener);
 		mainPanel.add(submitButton);
 		
