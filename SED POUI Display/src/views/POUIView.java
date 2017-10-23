@@ -80,14 +80,14 @@ public class POUIView {
 		mainFrame.setVisible(false);
 	}
 	
-	public static void main(String[] args) {
-		POUI test;
-		try {
-			test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
-			POUIView testView = new POUIView(test);
-			testView.setVisible();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		POUI test;
+//		try {
+//			test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
+//			POUIView testView = new POUIView(test);
+//			testView.setVisible();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
