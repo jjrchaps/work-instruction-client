@@ -16,11 +16,11 @@ import javax.swing.JTextField;
 import customtypes.POUI;
 import views.POUIView;
 
-public class SubmitButtonListener implements ActionListener, KeyListener {
+public class StartupListener implements ActionListener, KeyListener {
 	private JTextField textfield;
 
 
-	public SubmitButtonListener(JTextField textfield) {
+	public StartupListener(JTextField textfield) {
 		this.textfield = textfield;
 	}
 
@@ -36,7 +36,9 @@ public class SubmitButtonListener implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		getPOUI();
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			getPOUI();
+		}
 	}
 
 	@Override
