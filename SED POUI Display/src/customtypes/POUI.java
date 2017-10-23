@@ -33,14 +33,8 @@ public class POUI {
 	 * @param imageLocation The path to the images for this assembly. They should be name "step1.jpg", "step2.jpg", etc. and the path
 	 * supplied should end with a forward slash
 	 */
-	public POUI(int numberOfSteps, String imageLocation) throws IOException {
-		images = new LinkedList<ImageIcon>();
-		for (int i = 1; i <= numberOfSteps; i++) {
-			String fileName = imageLocation + "step" + Integer.toString(i) + ".jpg";
-			Image image = ImageIO.read(new File(fileName));
-			ImageIcon img = new ImageIcon(image);
-			images.add(img);
-		}
+	public POUI(LinkedList<ImageIcon> images) throws IOException {
+		this.images = images;
 		iterator = (ListIterator<ImageIcon>) images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = false;
@@ -98,11 +92,11 @@ public class POUI {
 		return iterator.hasPrevious();
 	}
 
-	public static void main(String[] args) {
-		try {
-			POUI test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			POUI test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
