@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +41,7 @@ public class POUIView {
 		imagePane.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 		
 		// add image to panel
-		JLabel poui = new JLabel(new ImageIcon(assemblyPOUI.nextStep()));
+		JLabel poui = new JLabel(assemblyPOUI.nextStep());
 		poui.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		imagePane.add(poui);
 		

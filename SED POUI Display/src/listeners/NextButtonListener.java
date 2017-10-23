@@ -3,7 +3,6 @@ package listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import customtypes.POUI;
@@ -31,7 +30,7 @@ public class NextButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (poui.hasNext()) {
-			imageLabel.setIcon(new ImageIcon(poui.nextStep()));
+			imageLabel.setIcon(poui.nextStep());
 		}
 	}
 

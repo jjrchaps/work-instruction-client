@@ -1,12 +1,13 @@
 package customtypes;
 
-import java.awt.image.BufferedImage;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * POUI will contain the images that will be used for assembler instruction, as well as relevant meta data 
@@ -15,10 +16,10 @@ import javax.imageio.ImageIO;
  */
 public class POUI {
 	// Container to store all images in order within the object
-	LinkedList<BufferedImage> images;
+	LinkedList<ImageIcon> images;
 
 	// Iterator to go over steps in order when build is taking place
-	ListIterator<BufferedImage> iterator;
+	ListIterator<ImageIcon> iterator;
 	
 	// setting up 2 boolean values to track whether previous or next was most recently called
 	// this will correct an issue causing the same img to be returned when alternating between
@@ -33,13 +34,14 @@ public class POUI {
 	 * supplied should end with a forward slash
 	 */
 	public POUI(int numberOfSteps, String imageLocation) throws IOException {
-		images = new LinkedList<BufferedImage>();
+		images = new LinkedList<ImageIcon>();
 		for (int i = 1; i <= numberOfSteps; i++) {
 			String fileName = imageLocation + "step" + Integer.toString(i) + ".jpg";
-			BufferedImage img = ImageIO.read(new File(fileName));
+			Image image = ImageIO.read(new File(fileName));
+			ImageIcon img = new ImageIcon(image);
 			images.add(img);
 		}
-		iterator = (ListIterator<BufferedImage>) images.iterator();
+		iterator = (ListIterator<ImageIcon>) images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = false;
 	}
@@ -48,7 +50,7 @@ public class POUI {
 	 * Starts the build, by returning the first step
 	 * @return A buffered image that is the first step of the build process
 	 */
-	public BufferedImage startBuild() {
+	public ImageIcon startBuild() {
 		return iterator.next();
 	}
 
@@ -56,7 +58,7 @@ public class POUI {
 	 * If there is a next step, it will be returned. Else it will return null
 	 * @return A buffered image if there are any more steps, null otherwise
 	 */
-	public BufferedImage nextStep() {
+	public ImageIcon nextStep() {
 		if (previousWasCalled) {
 			iterator.next();
 			previousWasCalled = false;
@@ -74,7 +76,7 @@ public class POUI {
 	 * If there is a previous step, it will be returned. Else it will return null
 	 * @return A buffered image if there are any previous steps, null otherwise
 	 */
-	public BufferedImage previousStep() {
+	public ImageIcon previousStep() {
 		if (nextWasCalled) {
 			iterator.previous();
 			nextWasCalled = false;
