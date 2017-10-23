@@ -50,9 +50,6 @@ public class StartupListener implements ActionListener, KeyListener {
 		ArrayList<String> options = new ArrayList<String>();
 		String input = textfield.getText();
 		options.add("test");
-		options.add("test2");
-		options.add("test3");
-		options.add("test4");
 
 		if (!(options.contains(input))) {
 			textfield.setText("Please enter a valid product number");
