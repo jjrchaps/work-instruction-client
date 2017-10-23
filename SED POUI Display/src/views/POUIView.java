@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
