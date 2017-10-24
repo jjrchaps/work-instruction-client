@@ -25,7 +25,7 @@ public class POUIView {
 
 	public POUIView(POUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
-		mainFrame = new JFrame();
+		mainFrame = new JFrame("POUI");
 		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		mainFrame.add(createPanel());
 		mainFrame.pack();
