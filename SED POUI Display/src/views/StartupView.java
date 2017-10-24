@@ -21,7 +21,7 @@ public class StartupView {
 	private JFrame mainFrame;
 	
 	public StartupView() {
-		mainFrame = new JFrame();
+		mainFrame = new JFrame("Welcome");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.add(this.createPanel());
 		mainFrame.pack();
@@ -38,10 +38,10 @@ public class StartupView {
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 
 
-		JLabel welcomeLabel = new JLabel("Welcome!");
-		welcomeLabel.setFont(new Font("Serif", Font.PLAIN, 36));
-		welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-		mainPanel.add(welcomeLabel);
+//		JLabel welcomeLabel = new JLabel("Welcome!");
+//		welcomeLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+//		welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+//		mainPanel.add(welcomeLabel);
 
 		JLabel explanationLabel = new JLabel("Please enter the SED product ID number to load POUI");
 		explanationLabel.setFont(new Font("Serif", Font.PLAIN, 18));
