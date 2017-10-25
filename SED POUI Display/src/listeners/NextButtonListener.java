@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
-import customtypes.POUI;
+import customtypes.ClientPOUI;
 
 /**
  * Listener for the next button in the pouiview class. If there is another image, it will display it.
@@ -13,7 +13,7 @@ import customtypes.POUI;
  */
 public class NextButtonListener implements ActionListener {
 	// save an instance of the POUI we're working on to pull up future steps
-	private POUI poui;
+	private ClientPOUI poui;
 	// instance of the imagePanel that is displayed in the POUIView
 	private JLabel imageLabel;
 	
@@ -22,7 +22,7 @@ public class NextButtonListener implements ActionListener {
 	 * @param poui The source POUI object to get the images from
 	 * @param imagePanel The pane that the images are being displayed in
 	 */
-	public NextButtonListener(POUI poui, JLabel imageLabel) {
+	public NextButtonListener(ClientPOUI poui, JLabel imageLabel) {
 		this.poui = poui;
 		this.imageLabel = imageLabel;
 	}

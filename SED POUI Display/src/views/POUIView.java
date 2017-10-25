@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import customtypes.POUI;
+import customtypes.ClientPOUI;
 import listeners.NextButtonListener;
 import listeners.PreviousButtonListener;
 
@@ -20,10 +20,10 @@ import listeners.PreviousButtonListener;
  * @author jameschapman
  */
 public class POUIView {
-	private POUI assemblyPOUI;
+	private ClientPOUI assemblyPOUI;
 	private JFrame mainFrame;
 
-	public POUIView(POUI assemblyPOUI) {
+	public POUIView(ClientPOUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
 		mainFrame = new JFrame("POUI");
 		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

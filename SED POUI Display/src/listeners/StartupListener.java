@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
-import customtypes.POUI;
+import customtypes.ClientPOUI;
 import views.POUIView;
 
 public class StartupListener implements ActionListener, KeyListener {
@@ -55,7 +55,7 @@ public class StartupListener implements ActionListener, KeyListener {
 			textfield.setText("Please enter a valid product number");
 		}
 		else {
-			POUI poui;
+			ClientPOUI poui;
 			try {
 				LinkedList<ImageIcon> images = new LinkedList<ImageIcon>();
 				for (int i = 1; i <= 3; i++) {
@@ -64,7 +64,7 @@ public class StartupListener implements ActionListener, KeyListener {
 					ImageIcon img = new ImageIcon(image);
 					images.add(img);
 				}
-				poui = new POUI(images);
+				poui = new ClientPOUI(images);
 				POUIView assemblyView = new POUIView(poui);
 				assemblyView.setVisible();
 			} catch (IOException e) {

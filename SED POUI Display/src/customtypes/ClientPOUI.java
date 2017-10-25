@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * about that particular assembly.
  * @author jameschapman
  */
-public class POUI {
+public class ClientPOUI {
 	// Container to store all images in order within the object
 	LinkedList<ImageIcon> images;
 
@@ -30,7 +30,7 @@ public class POUI {
 	 * @param imageLocation The path to the images for this assembly. They should be name "step1.jpg", "step2.jpg", etc. and the path
 	 * supplied should end with a forward slash
 	 */
-	public POUI(LinkedList<ImageIcon> images) throws IOException {
+	public ClientPOUI(LinkedList<ImageIcon> images) throws IOException {
 		this.images = images;
 		iterator = (ListIterator<ImageIcon>) images.iterator();
 		nextWasCalled = false;
