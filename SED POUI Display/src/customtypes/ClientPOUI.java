@@ -30,9 +30,9 @@ public class ClientPOUI {
 	 * @param imageLocation The path to the images for this assembly. They should be name "step1.jpg", "step2.jpg", etc. and the path
 	 * supplied should end with a forward slash
 	 */
-	public ClientPOUI(LinkedList<ImageIcon> images) throws IOException {
-		this.images = images;
-		iterator = (ListIterator<ImageIcon>) images.iterator();
+	public ClientPOUI(Images images) throws IOException {
+		this.images = images.getImages();
+		iterator = (ListIterator<ImageIcon>) this.images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = false;
 	}
