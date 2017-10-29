@@ -46,62 +46,35 @@ public class StartupListener implements ActionListener, KeyListener {
 		// do nothing
 	}
 
-//	private void getPOUI() {
-//		ArrayList<String> options = new ArrayList<String>();
-//		String input = textfield.getText();
-//		options.add("test");
-//
-//		if (!(options.contains(input))) {
-//			textfield.setText("Please enter a valid product number");
-//		}
-//		else {
-//			ClientPOUI poui;
-//			try {
-//				LinkedList<ImageIcon> images = new LinkedList<ImageIcon>();
-//				for (int i = 1; i <= 3; i++) {
-//					String fileName = "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/" + "step" + Integer.toString(i) + ".jpg";
-//					Image image = ImageIO.read(new File(fileName));
-//					ImageIcon img = new ImageIcon(image);
-//					images.add(img);
-//				}
-//				poui = new ClientPOUI(images);
-//				POUIView assemblyView = new POUIView(poui);
-//				assemblyView.setVisible();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
-		@SuppressWarnings("unchecked")
-		private void getPOUI() {
-			Socket clientSocket;
-			try {
-				clientSocket = new Socket("localhost", 12312);
-				PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
-				ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
-				String input = textfield.getText();
-				out.println(input);
-				out.flush();
-				LinkedList<ImageIcon> receivedImages = (LinkedList<ImageIcon>) in.readObject();
-				if (receivedImages != null) {
-					ClientPOUI poui = new ClientPOUI(receivedImages);
-					POUIView assemblyView = new POUIView(poui);
-					assemblyView.setVisible();
-				}
-				else {
-					textfield.setText("Please enter a valid product number");
-				}
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	@SuppressWarnings("unchecked")
+	private void getPOUI() {
+		Socket clientSocket;
+		try {
+			clientSocket = new Socket("localhost", 12312);
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+			String input = textfield.getText();
+			out.println(input);
+			out.flush();
+			LinkedList<ImageIcon> receivedImages = (LinkedList<ImageIcon>) in.readObject();
+			if (receivedImages != null) {
+				ClientPOUI poui = new ClientPOUI(receivedImages);
+				POUIView assemblyView = new POUIView(poui);
+				assemblyView.setVisible();
 			}
+			else {
+				textfield.setText("Please enter a valid product number");
+			}
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
 
 }	
