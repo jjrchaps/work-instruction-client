@@ -35,10 +35,12 @@ public class Images implements Serializable {
 				ImageIcon img = new ImageIcon(image);
 				images.add(img);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
+	public LinkedList<ImageIcon> getImages() {
+		return this.images;
+	}
 }
