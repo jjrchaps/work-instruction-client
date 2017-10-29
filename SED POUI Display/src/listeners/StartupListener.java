@@ -13,20 +13,23 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
+import connections.ServerConnection;
 import customtypes.ClientPOUI;
 import views.POUIView;
 
 public class StartupListener implements ActionListener, KeyListener {
 	private JTextField textfield;
+	private ServerConnection server;
 
 
 	public StartupListener(JTextField textfield) {
 		this.textfield = textfield;
+		server = new ServerConnection();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		getPOUI();
+		getPOUIAndDisplay();
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class StartupListener implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			getPOUI();
+			getPOUIAndDisplay();
 		}
 	}
 
@@ -46,8 +49,19 @@ public class StartupListener implements ActionListener, KeyListener {
 		// do nothing
 	}
 
-	private void getPOUI() {
-		//TODO: Use ServerConnection to get ClientPOUI and display using productID from textfield
+	/**
+	 * Uses a ServerConnection object to fetch the desired POUI's from the server
+	 * and displays them
+	 */
+	private void getPOUIAndDisplay() {
+		ClientPOUI poui = server.requestPOUI(textfield.getText());
+		if (poui != null) {
+			POUIView instructionView = new POUIView(poui);
+			instructionView.setVisible();
+		}
+		else {
+			textfield.setText("Please enter a valid product ID");
+		}
 	}
 
 }	
