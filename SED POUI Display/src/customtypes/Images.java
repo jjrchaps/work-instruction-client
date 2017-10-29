@@ -25,11 +25,11 @@ public class Images implements Serializable {
 	 * for the product.
 	 * @param folderLocation The path to where all the images are stored.
 	 */
-	public Images(String folderLocation) {
-		int numberOfImages = new File(folderLocation).listFiles().length;
+	public Images(String folderPath) {
+		int numberOfImages = new File(folderPath).listFiles().length;
 		images = new LinkedList<ImageIcon>();
 		for (int i = 1; i <= numberOfImages; i++) {
-			String fileName = "/Users/jameschapman/Projects/SED Projects/poui-server/Sample Images/" + "step" + Integer.toString(i) + ".jpg";
+			String fileName = folderPath + "step" + Integer.toString(i) + ".jpg";
 			try {
 				Image image = ImageIO.read(new File(fileName));
 				ImageIcon img = new ImageIcon(image);
