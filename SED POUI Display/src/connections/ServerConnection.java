@@ -19,21 +19,25 @@ public class ServerConnection {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private ObjectInputStream in;
-	
+
 	/**
 	 * Constructor will initialize a connection with the server as well as the input
 	 * and output stream for future use
 	 */
 	public ServerConnection() {
-		try {
-			clientSocket = new Socket("localhost", 12312);
-			out = new PrintWriter(clientSocket.getOutputStream());
-			in = new ObjectInputStream(clientSocket.getInputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
+		while (true) {
+			try {
+				clientSocket = new Socket("localhost", 12312);
+				out = new PrintWriter(clientSocket.getOutputStream());
+				in = new ObjectInputStream(clientSocket.getInputStream());
+				break;
+			} catch (IOException e) {
+				//TODO: Display error message when a connection cannot be established.
+				// do nothing, continue trying to connect to server
+			}
 		}
 	}
-	
+
 	/**
 	 * Fetches the relevant images from the POUI server and returns a ClientPOUI object
 	 * If the desired POUI's cannot be found, requestPOUI will return null
