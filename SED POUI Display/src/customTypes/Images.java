@@ -1,4 +1,4 @@
-package customtypes;
+package customTypes;
 
 import java.awt.Image;
 import java.io.File;

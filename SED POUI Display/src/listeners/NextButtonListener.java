@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
-import customtypes.ClientPOUI;
+import customTypes.ClientPOUI;
 
 /**
  * Listener for the next button in the pouiview class. If there is another image, it will display it.

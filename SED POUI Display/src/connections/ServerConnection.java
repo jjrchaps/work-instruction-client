@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import customtypes.ClientPOUI;
-import customtypes.Images;
+import customTypes.ClientPOUI;
+import customTypes.Images;
 
 /**
  * ServerConnection will act as the local method to encapsulate all communication

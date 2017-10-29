@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import customtypes.ClientPOUI;
+import customTypes.ClientPOUI;
 import listeners.NextButtonListener;
 import listeners.PreviousButtonListener;
 

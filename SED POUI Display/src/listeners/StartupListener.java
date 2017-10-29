@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 import connections.ServerConnection;
-import customtypes.ClientPOUI;
+import customTypes.ClientPOUI;
 import views.POUIView;
 
 public class StartupListener implements ActionListener, KeyListener {
