@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import customtypes.ClientPOUI;
+import customtypes.Images;
 
 /**
  * ServerConnection will act as the local method to encapsulate all communication
@@ -40,9 +41,18 @@ public class ServerConnection {
 	 * @return a ClientPOUI Object if the productID is valid, null otherwise
 	 */
 	public ClientPOUI requestPOUI(String productID) {
-		
-		
-		
+		out.println(productID);
+		out.flush();
+		try {
+			Object received = in.readObject();
+			if (received instanceof Images) {
+				return new ClientPOUI((Images) received);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
