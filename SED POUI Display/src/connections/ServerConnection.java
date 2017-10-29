@@ -1,4 +1,4 @@
-package connection;
+package connections;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,7 +33,12 @@ public class ServerConnection {
 		}
 	}
 	
-	
+	/**
+	 * Fetches the relevant images from the POUI server and returns a ClientPOUI object
+	 * If the desired POUI's cannot be found, requestPOUI will return null
+	 * @param productID The productID string for the desired poui
+	 * @return a ClientPOUI Object if the productID is valid, null otherwise
+	 */
 	public ClientPOUI requestPOUI(String productID) {
 		
 		
