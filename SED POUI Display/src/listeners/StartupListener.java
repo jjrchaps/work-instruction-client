@@ -3,20 +3,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JTextField;
+
+import javax.swing.JComboBox;
 
 import connections.ServerConnection;
 import customTypes.ClientPOUI;
 import views.POUIView;
 
 public class StartupListener implements ActionListener, KeyListener {
-	private JTextField textfield;
-	private ServerConnection server;
+	private JComboBox<String> comboBox;
+	private ServerConnection connection;
 
 
-	public StartupListener(JTextField textfield) {
-		this.textfield = textfield;
-		server = new ServerConnection();
+	public StartupListener(JComboBox<String> comboBox, ServerConnection connection) {
+		this.comboBox = comboBox;
+		this.connection = connection;
 	}
 
 	@Override
@@ -46,13 +47,10 @@ public class StartupListener implements ActionListener, KeyListener {
 	 * and displays them
 	 */
 	private void getPOUIAndDisplay() {
-		ClientPOUI poui = server.requestPOUI(textfield.getText());
+		ClientPOUI poui = connection.requestPOUI((String) comboBox.getSelectedItem());
 		if (poui != null) {
 			POUIView instructionView = new POUIView(poui);
 			instructionView.setVisible();
-		}
-		else {
-			textfield.setText("Please enter a valid product ID");
 		}
 	}
 
