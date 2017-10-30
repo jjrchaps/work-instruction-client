@@ -27,10 +27,10 @@ public class POUIView {
 
 	public POUIView(ClientPOUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
-		mainFrame = new JFrame("POUI");
-		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		mainFrame.add(createPanel());
-		mainFrame.pack();
+		this.mainFrame = new JFrame("POUI");
+		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.mainFrame.add(createPanel());
+		this.mainFrame.pack();
 	}
 
 	private JPanel createPanel() {
