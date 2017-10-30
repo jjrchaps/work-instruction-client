@@ -12,9 +12,14 @@ import customTypes.ClientPOUI;
  * @author jameschapman
  */
 public class NextButtonListener implements ActionListener {
-	// save an instance of the POUI we're working on to pull up future steps
+	/** 
+	 * save an instance of the POUI we're working on to pull up future steps
+	 */
 	private ClientPOUI poui;
-	// instance of the imagePanel that is displayed in the POUIView
+	
+	/**
+	 * instance of the imagePanel that is displayed in the POUIView
+	 */
 	private JLabel imageLabel;
 	
 	/**
