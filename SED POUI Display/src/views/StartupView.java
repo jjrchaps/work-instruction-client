@@ -5,11 +5,12 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
+import connections.ServerConnection;
 import listeners.StartupListener;
 
 /**
@@ -19,8 +20,10 @@ import listeners.StartupListener;
  */
 public class StartupView {
 	private JFrame mainFrame;
+	private ServerConnection connection;
 	
-	public StartupView() {
+	public StartupView(ServerConnection connection) {
+		this.connection = connection;
 		mainFrame = new JFrame("Welcome");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.add(this.createPanel());
@@ -42,14 +45,14 @@ public class StartupView {
 		explanationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		mainPanel.add(explanationLabel);
 		
-		JTextField unitIDInput = new JTextField("Enter ID here");
-		unitIDInput.setAlignmentX(JTextField.CENTER_ALIGNMENT);
-		unitIDInput.addKeyListener(new StartupListener(unitIDInput));
-		mainPanel.add(unitIDInput);
+		String[] options = connection.getProductIDs();
+		JComboBox<String> comboBox = new JComboBox<String>(options);
+		comboBox.setAlignmentX(JComboBox.CENTER_ALIGNMENT);
+		mainPanel.add(comboBox);
 
 		JButton submitButton = new JButton("Submit");
 		submitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		StartupListener listener = new StartupListener(unitIDInput);
+		StartupListener listener = new StartupListener(comboBox, connection);
 		submitButton.addActionListener(listener);
 		mainPanel.add(submitButton);
 		
