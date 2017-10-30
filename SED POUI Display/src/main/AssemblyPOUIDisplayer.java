@@ -1,10 +1,12 @@
 package main;
 
+import connections.ServerConnection;
 import views.StartupView;
 
 public class AssemblyPOUIDisplayer {
 	public static void main(String[] args) {
-		StartupView startup = new StartupView();
+		ServerConnection connection = new ServerConnection();
+		StartupView startup = new StartupView(connection);
 		startup.makeVisible();
 	}
 }
