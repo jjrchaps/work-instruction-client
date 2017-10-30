@@ -61,4 +61,23 @@ public class ServerConnection {
 		}
 		return null;
 	}
+
+	public String[] getProductIDs() {
+		// semicolon is always added after the request, even if no extra information follows
+		out.println("productList:");
+		out.flush();
+		try {
+			Object received = in.readObject();
+			if (received instanceof String) {
+				String productIDs = (String) received;
+				return productIDs.split(";");
+			}
+		}
+		catch (ClassNotFoundException|IOException e) {
+			e.printStackTrace();
+		}
+		// if we've made it here, we should return an empty list
+		String[] emptyList = {};
+		return emptyList;
+	}
 }
