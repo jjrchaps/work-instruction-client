@@ -23,6 +23,9 @@ public class NextButtonListener implements ActionListener {
 	 */
 	private JLabel imageLabel;
 	
+	/**
+	 * complete button instance so that it's visibility can be dynamically changed
+	 */
 	private JButton completeButton;
 	
 	/**
