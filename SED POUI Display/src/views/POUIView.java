@@ -22,6 +22,7 @@ import listeners.PreviousButtonListener;
 public class POUIView {
 	private ClientPOUI assemblyPOUI;
 	private JFrame mainFrame;
+	private JPanel buttonPane;
 
 	public POUIView(ClientPOUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
@@ -45,24 +46,33 @@ public class POUIView {
 		imagePane.add(poui);
 		
 		// create pane for buttons
-		JPanel buttonPane = new JPanel();
+		buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
 		
 		// create and add previous button to panel
 		JButton previous = new JButton("Previous");
 		previous.setAlignmentX(JButton.LEFT_ALIGNMENT);
-		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui);
-		previous.addActionListener(previousListener);
+		
 		buttonPane.add(previous);
 		
+		buttonPane.add(Box.createHorizontalGlue());
+		
+		JButton complete = new JButton("Build Complete");
+		complete.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		complete.setVisible(false);
+		buttonPane.add(complete);
 		buttonPane.add(Box.createHorizontalGlue());
 		
 		// create and add next button to panel
 		JButton next = new JButton("Next");
 		next.setAlignmentX(JButton.RIGHT_ALIGNMENT);
-		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui);
-		next.addActionListener(nextListener);
 		buttonPane.add(next);
+		
+		// add action listeners to buttons
+		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete);
+		previous.addActionListener(previousListener);
+		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete);
+		next.addActionListener(nextListener);
 		
 		// add image and buttons to mainPanel
 		mainPanel.add(imagePane, BorderLayout.CENTER);
@@ -79,14 +89,6 @@ public class POUIView {
 		mainFrame.setVisible(false);
 	}
 	
-//	public static void main(String[] args) {
-//		POUI test;
-//		try {
-//			test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
-//			POUIView testView = new POUIView(test);
-//			testView.setVisible();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void showCompleteButton() {
+	}
 }
