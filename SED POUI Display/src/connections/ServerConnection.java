@@ -45,7 +45,9 @@ public class ServerConnection {
 	 * @return a ClientPOUI Object if the productID is valid, null otherwise
 	 */
 	public ClientPOUI requestPOUI(String productID) {
-		out.println(productID);
+		// add the string 'pouirequest:' so the server knows what type of
+		// information we are seeking
+		out.println("pouirequest:" + productID);
 		out.flush();
 		try {
 			Object received = in.readObject();
