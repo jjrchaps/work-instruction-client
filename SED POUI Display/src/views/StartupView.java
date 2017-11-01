@@ -40,7 +40,7 @@ public class StartupView {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 
-		JLabel explanationLabel = new JLabel("Please enter the SED product ID number to load POUI");
+		JLabel explanationLabel = new JLabel("Please select an assembly and click submit to load POUI");
 		explanationLabel.setFont(new Font("Serif", Font.PLAIN, 18));
 		explanationLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		mainPanel.add(explanationLabel);
