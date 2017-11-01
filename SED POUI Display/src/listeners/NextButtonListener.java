@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import customTypes.ClientPOUI;
@@ -33,16 +34,20 @@ public class NextButtonListener implements ActionListener {
 	 * @param poui The source POUI object to get the images from
 	 * @param imagePanel The pane that the images are being displayed in
 	 */
-	public NextButtonListener(ClientPOUI poui, JLabel imageLabel, JButton completeButton) {
+	//TODO: needs commenting
+	private JFrame mainFrame;
+	public NextButtonListener(ClientPOUI poui, JLabel imageLabel, JButton completeButton, JFrame mainFrame) {
 		this.poui = poui;
 		this.imageLabel = imageLabel;
 		this.completeButton = completeButton;
+		this.mainFrame = mainFrame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (poui.hasNext()) {
 			imageLabel.setIcon(poui.nextStep());
+			mainFrame.pack();
 			if (!(poui.hasNext())) {
 				completeButton.setVisible(true);
 			}
