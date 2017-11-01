@@ -21,6 +21,8 @@ public class PreviousButtonListener implements ActionListener {
 	// controlled as the directions are followed
 	private JButton completeButton;
 	
+	//TODO: Add in code to resize window on click
+	//TODO: commenting
 	/**
 	 * Prepares local instances of variables to be able to make the image swap
 	 * @param poui The source POUI object to get the images from
