@@ -34,7 +34,7 @@ public class ClientPOUI {
 		this.images = images.getImages();
 		iterator = (ListIterator<ImageIcon>) this.images.iterator();
 		nextWasCalled = false;
-		previousWasCalled = false;
+		previousWasCalled = true;
 	}
 	
 	/**
