@@ -2,7 +2,6 @@ package views;
 
 import java.awt.BorderLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -24,13 +23,14 @@ public class POUIView {
 	private ClientPOUI assemblyPOUI;
 	private JFrame mainFrame;
 	private JPanel buttonPane;
-
+	//TODO: commenting
 	public POUIView(ClientPOUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
 		this.mainFrame = new JFrame("POUI");
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.mainFrame.add(createPanel());
 		this.mainFrame.pack();
+		this.mainFrame.setVisible(true);
 	}
 
 	private JPanel createPanel() {
@@ -39,7 +39,6 @@ public class POUIView {
 
 		JPanel imagePane = new JPanel();
 		imagePane.setLayout(new BoxLayout(imagePane, BoxLayout.PAGE_AXIS));
-		imagePane.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 
 		// add image to panel
 		JLabel poui = new JLabel(assemblyPOUI.nextStep());

@@ -20,7 +20,7 @@ public class PreviousButtonListener implements ActionListener {
 	// instance of JButton to store the build complete button, this allows it to be dynamically
 	// controlled as the directions are followed
 	private JButton completeButton;
-	
+
 	//TODO: Add in code to resize window on click
 	//TODO: commenting
 	/**
@@ -42,6 +42,9 @@ public class PreviousButtonListener implements ActionListener {
 				completeButton.setVisible(false);
 			}
 		}
-	}
+		else {
 
+		}
+
+	}
 }
