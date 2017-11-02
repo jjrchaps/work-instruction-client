@@ -12,16 +12,26 @@ import javax.swing.ImageIcon;
  * @author jameschapman
  */
 public class ClientPOUI {
-	// Container to store all images in order within the object
+	/**
+	 *  Container to store all images in order within the object
+	 */
 	LinkedList<ImageIcon> images;
 
-	// Iterator to go over steps in order when build is taking place
+	/**
+	 * Iterator to go over steps in order when build is taking place
+	 */
 	ListIterator<ImageIcon> iterator;
 	
-	// setting up 2 boolean values to track whether previous or next was most recently called
-	// this will correct an issue causing the same img to be returned when alternating between
-	// the previous and next buttons
+	/**
+	 * Setting to track when the next button was clicked. This will ensure the iterator serves up the 
+	 * correct image when necessary.
+	 */
 	private boolean nextWasCalled;
+	
+	/**
+	 * Setting to track when the previous button was clicked. This will ensure the iterator serves up the 
+	 * correct image when necessary.
+	 */
 	private boolean previousWasCalled;
 	
 	/**
@@ -88,12 +98,4 @@ public class ClientPOUI {
 	public boolean hasPrevious() {
 		return iterator.hasPrevious();
 	}
-
-//	public static void main(String[] args) {
-//		try {
-//			POUI test = new POUI(3, "/Users/jameschapman/Projects/SED Projects/poui-displayer/Sample Images/");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }
