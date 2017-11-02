@@ -10,11 +10,29 @@ import connections.ServerConnection;
 import customTypes.ClientPOUI;
 import views.POUIView;
 
+/**
+ * StartupListener responds to the submit button being clicked and triggers
+ * the program to fetch the selected POUI and display it
+ * @author jameschapman
+ */
 public class StartupListener implements ActionListener, KeyListener {
+	/**
+	 * Local instance of JComboBox, stores a reference from the StartupView's JComboBox
+	 * so that we can access what the user has selected.
+	 */
 	private JComboBox<String> comboBox;
+	
+	/**
+	 * A instance of ServerConnection that serves as our server connection -- used to fetch
+	 * the POUIs from the server.
+	 */
 	private ServerConnection connection;
 
-
+	/**
+	 * Constructor for StartupListener that initializes local variables with the given parameters
+	 * @param comboBox The comboBox that displays assemblies to the user
+	 * @param connection A connection with the POUI server to be used to fetch images
+	 */
 	public StartupListener(JComboBox<String> comboBox, ServerConnection connection) {
 		this.comboBox = comboBox;
 		this.connection = connection;
@@ -44,7 +62,7 @@ public class StartupListener implements ActionListener, KeyListener {
 
 	/**
 	 * Uses a ServerConnection object to fetch the desired POUI's from the server
-	 * and displays them
+	 * and displays them for the user
 	 */
 	private void getPOUIAndDisplay() {
 		ClientPOUI poui = connection.requestPOUI((String) comboBox.getSelectedItem());

@@ -17,6 +17,9 @@ import javax.swing.ImageIcon;
 public class Images implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Internal structure to store a collection of images for a POUI
+	 */
 	private LinkedList<ImageIcon> images;
 	
 	/**

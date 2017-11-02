@@ -32,8 +32,7 @@ public class ServerConnection {
 				in = new ObjectInputStream(clientSocket.getInputStream());
 				break;
 			} catch (IOException e) {
-				//TODO: Display error message when a connection cannot be established.
-				// do nothing, continue trying to connect to server
+				//TODO: Display error message when a connection cannot be established, query to retry?
 			}
 		}
 	}
@@ -62,6 +61,11 @@ public class ServerConnection {
 		return null;
 	}
 
+	/**
+	 * Fetches a list of products that have available POUIs from the server. A valid request takes the form is a string
+	 * sent to the server that says "productList:".
+	 * @return An array of String that is all the available product names from the server
+	 */
 	public String[] getProductIDs() {
 		// semicolon is always added after the request, even if no extra information follows
 		out.println("productList:");

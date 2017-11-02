@@ -20,20 +20,43 @@ import listeners.PreviousButtonListener;
  * @author jameschapman
  */
 public class POUIView {
+	/**
+	 * Local instance of ClientPOUI, will use this copy fetched from the server to be displayed to the user.
+	 */
 	private ClientPOUI assemblyPOUI;
+	
+	/**
+	 * Only instance of JFrame used throughout the class. All components will be added to this frame, and the
+	 * frame will be displayed.
+	 */
 	private JFrame mainFrame;
+	
+	/**
+	 * The pane that contains the buttons. They will be displayed below the images and 'Build Complete' will be
+	 * dynamically displayed.
+	 */
 	private JPanel buttonPane;
-	//TODO: commenting
+	
+	
+	/**
+	 * Constructs a new instance of POUIView, initializes all local variables and takes in a ClientPOUI object
+	 * that is the POUI that will be displayed.
+	 * @param assemblyPOUI The POUI that the user has requested and is to be displayed, fetched from POUI server.
+	 */
 	public POUIView(ClientPOUI assemblyPOUI) {
 		this.assemblyPOUI = assemblyPOUI;
 		this.mainFrame = new JFrame("POUI");
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		this.mainFrame.add(createPanel());
+		this.mainFrame.add(createPanels());
 		this.mainFrame.pack();
 		this.mainFrame.setVisible(true);
 	}
-
-	private JPanel createPanel() {
+	
+	/**
+	 * Creates the panels that will be added to the main JFrame and then displayed.
+	 * @return mainPanel The panel that contains all sub-components to be added to the frame.
+	 */
+	private JPanel createPanels() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 
@@ -69,7 +92,7 @@ public class POUIView {
 		buttonPane.add(next);
 
 		// add action listeners to buttons
-		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete);
+		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete, mainFrame);
 		previous.addActionListener(previousListener);
 		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete, mainFrame);
 		next.addActionListener(nextListener);
@@ -89,8 +112,5 @@ public class POUIView {
 
 	public void hideView() {
 		mainFrame.setVisible(false);
-	}
-
-	public void showCompleteButton() {
 	}
 }

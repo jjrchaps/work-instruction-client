@@ -19,9 +19,20 @@ import listeners.StartupListener;
  * @author jameschapman
  */
 public class StartupView {
+	/**
+	 * The frame that contains the welcome message and method to select POUI to load.
+	 */
 	private JFrame mainFrame;
+	
+	/**
+	 * A local instance of the connection with the server, to be passed to the appropriate listeners.
+	 */
 	private ServerConnection connection;
 	
+	/**
+	 * Constructor for StartupView, takes in a connection object and initializes all local variables.
+	 * @param connection The connection with the server, used for loading images and list of available POUIs.
+	 */
 	public StartupView(ServerConnection connection) {
 		this.connection = connection;
 		mainFrame = new JFrame("Welcome");
