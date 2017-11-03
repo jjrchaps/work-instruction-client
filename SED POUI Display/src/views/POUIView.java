@@ -64,7 +64,7 @@ public class POUIView {
 		imagePane.setLayout(new BoxLayout(imagePane, BoxLayout.PAGE_AXIS));
 
 		// add image to panel
-		JLabel poui = new JLabel(assemblyPOUI.nextStep());
+		JLabel poui = new JLabel(assemblyPOUI.startBuild());
 		poui.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		imagePane.add(poui);
 

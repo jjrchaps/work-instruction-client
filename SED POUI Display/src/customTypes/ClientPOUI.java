@@ -52,7 +52,7 @@ public class ClientPOUI {
 	 * @return A buffered image that is the first step of the build process
 	 */
 	public ImageIcon startBuild() {
-		return iterator.next();
+		return images.getFirst();
 	}
 
 	/**
