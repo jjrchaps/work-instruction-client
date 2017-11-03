@@ -53,11 +53,10 @@ public class ServerConnection {
 			if (received instanceof Images) {
 				return new ClientPOUI((Images) received);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (ClassNotFoundException|IOException e) {
 			e.printStackTrace();
 		}
+		// if we've made it here, we haven't found the desired POUI. Return null.
 		return null;
 	}
 
