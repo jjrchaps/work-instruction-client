@@ -49,13 +49,13 @@ public class POUIView {
 	 * @param assemblyPOUI The POUI that the user has requested and is to be displayed, fetched from POUI server.
 	 */
 	public POUIView(ClientPOUI assemblyPOUI, ServerConnection connection) {
+		this.connection = connection;
 		this.assemblyPOUI = assemblyPOUI;
 		this.mainFrame = new JFrame("POUI");
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.mainFrame.add(createPanels());
 		this.mainFrame.pack();
 		this.mainFrame.setVisible(true);
-		this.connection = connection;
 	}
 	
 	/**
