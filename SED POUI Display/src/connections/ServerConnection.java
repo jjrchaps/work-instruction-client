@@ -8,6 +8,8 @@ import java.net.Socket;
 import customTypes.ClientPOUI;
 import customTypes.Images;
 
+//TODO: Class requires better error handling and catching
+
 /**
  * ServerConnection will act as the local method to encapsulate all communication
  * with the server in one place. A connection will be established on startup and maintained
@@ -82,5 +84,26 @@ public class ServerConnection {
 		// if we've made it here, we should return an empty list
 		String[] emptyList = {};
 		return emptyList;
+	}
+
+	/**
+	 * Sends all timings recorded by the client to the server for storage.
+	 * @param timings A string of time values separated by a colon.
+	 */
+	public void reportTimings(String timings) {
+		String timesReport = "reportTimings:" + timings;
+		out.println(timesReport);
+		out.flush();
+		try {
+			Object received = in.readObject();
+			if (received instanceof Boolean) {
+				boolean response = (boolean) received;
+				if (!response) {
+					throw new Exception();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
