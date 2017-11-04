@@ -67,7 +67,7 @@ public class StartupListener implements ActionListener, KeyListener {
 	private void getPOUIAndDisplay() {
 		ClientPOUI poui = connection.requestPOUI((String) comboBox.getSelectedItem());
 		if (poui != null) {
-			POUIView instructionView = new POUIView(poui);
+			POUIView instructionView = new POUIView(poui, connection);
 			instructionView.setVisible();
 		}
 	}
