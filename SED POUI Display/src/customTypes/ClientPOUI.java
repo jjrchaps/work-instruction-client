@@ -22,34 +22,34 @@ public class ClientPOUI {
 	 * Iterator to go over steps in order when build is taking place
 	 */
 	ListIterator<ImageIcon> iterator;
-	
+
 	/**
 	 * Setting to track when the next button was clicked. This will ensure the iterator serves up the 
 	 * correct image when necessary.
 	 */
 	private boolean nextWasCalled;
-	
+
 	/**
 	 * Setting to track when the previous button was clicked. This will ensure the iterator serves up the 
 	 * correct image when necessary.
 	 */
 	private boolean previousWasCalled;
-	
+
 	/**
 	 * Array to store all the timings recorded
 	 */
 	private float[] timings;
-	
+
 	/**
 	 * Long to store the time that the image began being displayed in nanoseconds.
 	 */
 	private long startTime;
-	
+
 	/**
 	 * Long to store the time the image stopped being displayed in nanoseconds.
 	 */
 	private long endTime;
-	
+
 	/**
 	 * Constructor for POUI. Will read in number the images in order of steps and store within object
 	 * @param numberOfSteps The number of steps (and images) to be completed for this SED Assembly
@@ -62,8 +62,11 @@ public class ClientPOUI {
 		nextWasCalled = false;
 		previousWasCalled = true;
 		timings = new float[images.getImages().size()];
+		for (int i = 0; i < timings.length; i++) {
+			timings[i] = 0;
+		}
 	}
-	
+
 	/**
 	 * Starts the build, by returning the first step
 	 * @return A buffered image that is the first step of the build process
@@ -90,7 +93,7 @@ public class ClientPOUI {
 			BigDecimal roundedTime = rawTime.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			// set the time for the index that had just been displayed
 			// set the time for the index that had just been displayed
-			timings[iterator.previousIndex()] = roundedTime.floatValue();
+			timings[iterator.previousIndex()-1] += roundedTime.floatValue();
 			startTime = System.nanoTime();
 			nextWasCalled = true;
 			return next;
@@ -116,7 +119,7 @@ public class ClientPOUI {
 			BigDecimal rawTime = new BigDecimal((endTime - startTime)/1000000000.0);
 			BigDecimal roundedTime = rawTime.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			// set the time for the index that had just been displayed
-			timings[iterator.nextIndex()] = roundedTime.floatValue();
+			timings[iterator.nextIndex()+1] += roundedTime.floatValue();
 			startTime = System.nanoTime();
 			previousWasCalled = true;
 			return previous;
@@ -125,23 +128,40 @@ public class ClientPOUI {
 			return null;
 		}
 	}
-	
+
 	public boolean hasNext() {
 		return iterator.hasNext();
 	}
-	
+
 	public boolean hasPrevious() {
 		return iterator.hasPrevious();
 	}
-	
+
 	/**
 	 * Generates a string containing all the timings separated with colons.
 	 * @return A string containing all the timings in string format.
 	 */
 	public String getTimings() {
+		// if we are getting timings, it means build complete was just pressed. Which also means that
+		// the very last image was displayed but the time not tracked, so track it now
+		this.endTime = System.nanoTime();
+		BigDecimal rawTime = new BigDecimal((endTime - startTime)/1000000000.0);
+		BigDecimal roundedTime = rawTime.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		// set the time for the index that had just been displayed. Since we are at the end of the poui, we know
+		// it has to be the last index of timings as well.
+		timings[timings.length - 1] += roundedTime.floatValue();
+		
+		// now build the string with final time recordings within
 		String stringTimings = "";
 		for (int i = 0; i < timings.length; i++) {
-			stringTimings += ":" + this.timings[i];
+			// if this is the first value we're adding, we don't need the colon as it's added
+			// in the ServerConnection request.
+			if (i == 0) {
+				stringTimings += this.timings[i];
+			}
+			else {
+				stringTimings += ":" + this.timings[i];
+			}
 		}
 		return stringTimings;
 	}
