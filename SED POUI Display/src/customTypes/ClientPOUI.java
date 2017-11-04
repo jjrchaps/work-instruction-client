@@ -133,4 +133,16 @@ public class ClientPOUI {
 	public boolean hasPrevious() {
 		return iterator.hasPrevious();
 	}
+	
+	/**
+	 * Generates a string containing all the timings separated with colons.
+	 * @return A string containing all the timings in string format.
+	 */
+	public String getTimings() {
+		String stringTimings = "";
+		for (int i = 0; i < timings.length; i++) {
+			stringTimings += ":" + this.timings[i];
+		}
+		return stringTimings;
+	}
 }
