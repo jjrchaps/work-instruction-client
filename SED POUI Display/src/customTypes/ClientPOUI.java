@@ -35,10 +35,19 @@ public class ClientPOUI {
 	 */
 	private boolean previousWasCalled;
 	
+	/**
+	 * Array to store all the timings recorded
+	 */
 	private float[] timings;
 	
+	/**
+	 * Long to store the time that the image began being displayed in nanoseconds.
+	 */
 	private long startTime;
 	
+	/**
+	 * Long to store the time the image stopped being displayed in nanoseconds.
+	 */
 	private long endTime;
 	
 	/**
