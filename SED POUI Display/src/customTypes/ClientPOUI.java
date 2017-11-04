@@ -1,6 +1,7 @@
 package customTypes;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -34,6 +35,12 @@ public class ClientPOUI {
 	 */
 	private boolean previousWasCalled;
 	
+	private float[] timings;
+	
+	private long startTime;
+	
+	private long endTime;
+	
 	/**
 	 * Constructor for POUI. Will read in number the images in order of steps and store within object
 	 * @param numberOfSteps The number of steps (and images) to be completed for this SED Assembly
@@ -45,6 +52,7 @@ public class ClientPOUI {
 		iterator = (ListIterator<ImageIcon>) this.images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = true;
+		timings = new float[images.getImages().size()];
 	}
 	
 	/**
@@ -52,6 +60,7 @@ public class ClientPOUI {
 	 * @return A buffered image that is the first step of the build process
 	 */
 	public ImageIcon startBuild() {
+		startTime = System.nanoTime();
 		return images.getFirst();
 	}
 
@@ -65,8 +74,17 @@ public class ClientPOUI {
 			previousWasCalled = false;
 		}
 		if (iterator.hasNext()) {
+			endTime = System.nanoTime();
+			ImageIcon next = iterator.next();
+			// converting recorded time to from nanoseconds to seconds rounded to two decimal places.
+			BigDecimal rawTime = new BigDecimal((endTime - startTime)/1000000000.0);
+			BigDecimal roundedTime = rawTime.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			// set the time for the index that had just been displayed
+			// set the time for the index that had just been displayed
+			timings[iterator.previousIndex()] = roundedTime.floatValue();
+			startTime = System.nanoTime();
 			nextWasCalled = true;
-			return iterator.next();
+			return next;
 		}
 		else {
 			return null;
@@ -83,8 +101,16 @@ public class ClientPOUI {
 			nextWasCalled = false;
 		}
 		if (iterator.hasPrevious()) {
+			endTime = System.nanoTime();
+			ImageIcon previous = iterator.previous();
+			// converting recorded time to from nanoseconds to seconds rounded to two decimal places.
+			BigDecimal rawTime = new BigDecimal((endTime - startTime)/1000000000.0);
+			BigDecimal roundedTime = rawTime.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			// set the time for the index that had just been displayed
+			timings[iterator.nextIndex()] = roundedTime.floatValue();
+			startTime = System.nanoTime();
 			previousWasCalled = true;
-			return iterator.previous();
+			return previous;
 		}
 		else {
 			return null;
