@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import connections.ServerConnection;
 import customTypes.ClientPOUI;
 import listeners.BuildCompleteListener;
 import listeners.NextButtonListener;
@@ -37,19 +38,24 @@ public class POUIView {
 	 */
 	private JPanel buttonPane;
 	
+	/**
+	 * A connection with the server that will be passed to Listeners to be used when necessary.
+	 */
+	private ServerConnection connection;
 	
 	/**
 	 * Constructs a new instance of POUIView, initializes all local variables and takes in a ClientPOUI object
 	 * that is the POUI that will be displayed.
 	 * @param assemblyPOUI The POUI that the user has requested and is to be displayed, fetched from POUI server.
 	 */
-	public POUIView(ClientPOUI assemblyPOUI) {
+	public POUIView(ClientPOUI assemblyPOUI, ServerConnection connection) {
 		this.assemblyPOUI = assemblyPOUI;
 		this.mainFrame = new JFrame("POUI");
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.mainFrame.add(createPanels());
 		this.mainFrame.pack();
 		this.mainFrame.setVisible(true);
+		this.connection = connection;
 	}
 	
 	/**
@@ -96,7 +102,7 @@ public class POUIView {
 		previous.addActionListener(previousListener);
 		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete, mainFrame);
 		next.addActionListener(nextListener);
-		BuildCompleteListener completeListener = new BuildCompleteListener(mainFrame);
+		BuildCompleteListener completeListener = new BuildCompleteListener(mainFrame, connection, assemblyPOUI);
 		complete.addActionListener(completeListener);
 
 		// add image and buttons to mainPanel
