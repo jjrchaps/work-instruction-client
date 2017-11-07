@@ -49,6 +49,11 @@ public class ClientPOUI {
 	 * Long to store the time the image stopped being displayed in nanoseconds.
 	 */
 	private long endTime;
+	
+	/**
+	 * The identifying string for this build
+	 */
+	private String productID;
 
 	/**
 	 * Constructor for POUI. Will read in number the images in order of steps and store within object
@@ -56,8 +61,9 @@ public class ClientPOUI {
 	 * @param imageLocation The path to the images for this assembly. They should be name "step1.jpg", "step2.jpg", etc. and the path
 	 * supplied should end with a forward slash
 	 */
-	public ClientPOUI(Images images) throws IOException {
+	public ClientPOUI(Images images, String productID) throws IOException {
 		this.images = images.getImages();
+		this.productID = productID;
 		iterator = (ListIterator<ImageIcon>) this.images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = true;
@@ -138,7 +144,7 @@ public class ClientPOUI {
 	}
 
 	/**
-	 * Generates a string containing all the timings separated with colons.
+	 * Generates a string containing all the timings separated with colons. String starts with product id.
 	 * @return A string containing all the timings in string format.
 	 */
 	public String getTimings() {
@@ -152,16 +158,9 @@ public class ClientPOUI {
 		timings[timings.length - 1] += roundedTime.floatValue();
 		
 		// now build the string with final time recordings within
-		String stringTimings = "";
+		String stringTimings = this.productID + ":";
 		for (int i = 0; i < timings.length; i++) {
-			// if this is the first value we're adding, we don't need the colon as it's added
-			// in the ServerConnection request.
-			if (i == 0) {
-				stringTimings += this.timings[i];
-			}
-			else {
-				stringTimings += ":" + this.timings[i];
-			}
+			stringTimings += ":" + this.timings[i];
 		}
 		return stringTimings;
 	}
