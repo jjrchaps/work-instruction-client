@@ -54,7 +54,7 @@ public class POUIView {
 		this.mainFrame = new JFrame("POUI");
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.mainFrame.add(createPanels());
-		this.mainFrame.pack();
+		this.mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.mainFrame.setVisible(true);
 	}
 	
@@ -98,9 +98,9 @@ public class POUIView {
 		buttonPane.add(next);
 
 		// add action listeners to buttons
-		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete, mainFrame);
+		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete);
 		previous.addActionListener(previousListener);
-		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete, mainFrame);
+		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete);
 		next.addActionListener(nextListener);
 		BuildCompleteListener completeListener = new BuildCompleteListener(mainFrame, connection, assemblyPOUI);
 		complete.addActionListener(completeListener);
