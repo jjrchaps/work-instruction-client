@@ -53,7 +53,7 @@ public class ServerConnection {
 		try {
 			Object received = in.readObject();
 			if (received instanceof Images) {
-				return new ClientPOUI((Images) received);
+				return new ClientPOUI((Images) received, productID);
 			}
 		} catch (ClassNotFoundException|IOException e) {
 			e.printStackTrace();
