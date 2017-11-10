@@ -158,7 +158,7 @@ public class ClientPOUI {
 		timings[timings.length - 1] += roundedTime.floatValue();
 		
 		// now build the string with final time recordings within
-		String stringTimings = this.productID + ":";
+		String stringTimings = this.productID;
 		for (int i = 0; i < timings.length; i++) {
 			stringTimings += ":" + this.timings[i];
 		}
