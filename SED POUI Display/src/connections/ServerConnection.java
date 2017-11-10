@@ -103,7 +103,7 @@ public class ServerConnection {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Server failed to store sent timings");
 		}
 	}
 }
