@@ -27,16 +27,7 @@ public class ServerConnection {
 	 * and output stream for future use
 	 */
 	public ServerConnection() {
-		while (true) {
-			try {
-				clientSocket = new Socket("localhost", 12312);
-				out = new PrintWriter(clientSocket.getOutputStream());
-				in = new ObjectInputStream(clientSocket.getInputStream());
-				break;
-			} catch (IOException e) {
-				//TODO: Display error message when a connection cannot be established, query to retry?
-			}
-		}
+		reconnect();
 	}
 
 	private void reconnect() {
@@ -47,7 +38,7 @@ public class ServerConnection {
 				in = new ObjectInputStream(clientSocket.getInputStream());
 				break;
 			} catch (IOException e) {
-				//TODO: Display error message when a connection cannot be established, query to retry?
+				// do nothing, as loop will continue until successful connection is established.
 			}
 		}
 	}
@@ -70,10 +61,12 @@ public class ServerConnection {
 					return new ClientPOUI((Images) received, productID);
 				}
 				break;
-			} catch (ClassNotFoundException|IOException e) {
+			} catch (IOException e) {
 				System.out.println("Reestablishing connection with server...");
 				reconnect();
 				System.out.println("Connection established!");
+			} catch (ClassNotFoundException e) {
+				System.out.println("Invalid response from server!");
 			}
 		}
 		// if we've made it here, we haven't found the desired POUI. Return null.
@@ -87,21 +80,26 @@ public class ServerConnection {
 	 */
 	public String[] getProductIDs() {
 		// semicolon is always added after the request, even if no extra information follows
-		out.println("productList:");
-		out.flush();
-		try {
-			Object received = in.readObject();
-			if (received instanceof String) {
-				String productIDs = (String) received;
-				return productIDs.split(";");
+		while (true) {
+			out.println("productList:");
+			out.flush();
+			try {
+				Object received = in.readObject();
+				if (received instanceof String) {
+					String productIDs = (String) received;
+					return productIDs.split(";");
+				}
+				break;
+			} catch (IOException e) {
+				System.out.println("Reestablishing connection with server...");
+				reconnect();
+				System.out.println("Connection established!");
+			} catch (ClassNotFoundException e) {
+				System.out.println("Invalid response from server!");
 			}
 		}
-		catch (ClassNotFoundException|IOException e) {
-			e.printStackTrace();
-		}
-		// if we've made it here, we should return an empty list
-		String[] emptyList = {};
-		return emptyList;
+		// if we get here something has gone wrong server side and there will be no POUIs to load.
+		return null;
 	}
 
 	/**
@@ -110,18 +108,25 @@ public class ServerConnection {
 	 */
 	public void reportTimings(String timings) {
 		String timesReport = "reportTimings:" + timings;
-		out.println(timesReport);
-		out.flush();
-		try {
-			Object received = in.readObject();
-			if (received instanceof Boolean) {
-				boolean response = (boolean) received;
-				if (!response) {
-					throw new Exception();
+		while (true) {
+			out.println(timesReport);
+			out.flush();
+			try {
+				Object received = in.readObject();
+				if (received instanceof Boolean) {
+					boolean response = (boolean) received;
+					if (!response) {
+						System.out.println("Server failed to store sent information.");
+					}
 				}
+				break;
+			} catch (IOException e) {
+				System.out.println("Reestablishing connection with server...");
+				reconnect();
+				System.out.println("Connection established!");
+			} catch (ClassNotFoundException e) {
+				System.out.println("Invalid response from server!");
 			}
-		} catch (Exception e) {
-			System.out.println("Server failed to store sent timings");
 		}
 	}
 }
