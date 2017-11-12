@@ -47,8 +47,8 @@ public class BuildCompleteListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		connection.reportTimings(poui.getTimings());
 		viewFrame.setVisible(false);
+		connection.reportTimings(poui.getTimings());
 	}
 
 }
