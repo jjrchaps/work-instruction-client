@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import auxiliary.ClientPOUI;
 import connections.ServerConnection;
-import customTypes.ClientPOUI;
 
 /**
  * BuildCompleteListener is an action listener for the 'Build Complete' button in

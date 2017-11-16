@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import customTypes.ClientPOUI;
-import customTypes.Images;
+import auxiliary.ClientPOUI;
+import auxiliary.Images;
 
 //TODO: Class requires better error handling and catching
 

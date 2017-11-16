@@ -6,8 +6,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JComboBox;
 
+import auxiliary.ClientPOUI;
 import connections.ServerConnection;
-import customTypes.ClientPOUI;
 import views.POUIView;
 
 /**

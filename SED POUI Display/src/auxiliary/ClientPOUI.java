@@ -1,4 +1,4 @@
-package customTypes;
+package auxiliary;
 
 import java.io.IOException;
 import java.math.BigDecimal;

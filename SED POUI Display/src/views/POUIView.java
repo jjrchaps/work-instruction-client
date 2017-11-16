@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import auxiliary.ClientPOUI;
 import connections.ServerConnection;
-import customTypes.ClientPOUI;
 import listeners.BuildCompleteListener;
 import listeners.NextButtonListener;
 import listeners.PreviousButtonListener;

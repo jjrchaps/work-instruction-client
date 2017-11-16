@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import customTypes.ClientPOUI;
+import auxiliary.ClientPOUI;
 
 /**
  * Listener for the previous button in the pouiview class. If there is a previous image, it will display it.
