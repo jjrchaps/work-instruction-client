@@ -11,7 +11,7 @@ import auxiliary.Images;
 //TODO: Class requires better error handling and catching
 
 /**
- * ServerConnection will act as the local method to encapsulate all communication
+ * ClientServerConnection will act as the local method to encapsulate all communication
  * with the server in one place. A connection will be established on startup and maintained
  * throughout the use of the program.
  * @author jameschapman
@@ -29,8 +29,13 @@ public class ClientServerConnection {
 	public ClientServerConnection() {
 		reconnect();
 	}
-
+	
+	/**
+	 * Attempts to re-establish a connection with the server, and doesn't stop
+	 * until a connection has been successfully established.
+	 */
 	private void reconnect() {
+		System.out.println("Reestablishing connection with server...");
 		while (true) {
 			try {
 				clientSocket = new Socket("localhost", 12312);
@@ -41,6 +46,7 @@ public class ClientServerConnection {
 				// do nothing, as loop will continue until successful connection is established.
 			}
 		}
+		System.out.println("Connection established!");
 	}
 
 	/**
@@ -62,9 +68,7 @@ public class ClientServerConnection {
 				}
 				break;
 			} catch (IOException e) {
-				System.out.println("Reestablishing connection with server...");
 				reconnect();
-				System.out.println("Connection established!");
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid response from server!");
 			}
@@ -91,9 +95,7 @@ public class ClientServerConnection {
 				}
 				break;
 			} catch (IOException e) {
-				System.out.println("Reestablishing connection with server...");
 				reconnect();
-				System.out.println("Connection established!");
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid response from server!");
 			}
@@ -121,9 +123,7 @@ public class ClientServerConnection {
 				}
 				break;
 			} catch (IOException e) {
-				System.out.println("Reestablishing connection with server...");
 				reconnect();
-				System.out.println("Connection established!");
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid response from server!");
 			}
