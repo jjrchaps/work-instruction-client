@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import auxiliary.ClientPOUI;
-import connections.ServerConnection;
+import connections.ClientServerConnection;
 import listeners.BuildCompleteListener;
 import listeners.NextButtonListener;
 import listeners.PreviousButtonListener;
@@ -41,14 +41,14 @@ public class POUIView {
 	/**
 	 * A connection with the server that will be passed to Listeners to be used when necessary.
 	 */
-	private ServerConnection connection;
+	private ClientServerConnection connection;
 	
 	/**
 	 * Constructs a new instance of POUIView, initializes all local variables and takes in a ClientPOUI object
 	 * that is the POUI that will be displayed.
 	 * @param assemblyPOUI The POUI that the user has requested and is to be displayed, fetched from POUI server.
 	 */
-	public POUIView(ClientPOUI assemblyPOUI, ServerConnection connection) {
+	public POUIView(ClientPOUI assemblyPOUI, ClientServerConnection connection) {
 		this.connection = connection;
 		this.assemblyPOUI = assemblyPOUI;
 		this.mainFrame = new JFrame("POUI");

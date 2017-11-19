@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import connections.ServerConnection;
+import connections.ClientServerConnection;
 import listeners.StartupListener;
 
 /**
@@ -29,13 +29,13 @@ public class StartupView {
 	/**
 	 * A local instance of the connection with the server, to be passed to the appropriate listeners.
 	 */
-	private ServerConnection connection;
+	private ClientServerConnection connection;
 	
 	/**
 	 * Constructor for StartupView, takes in a connection object and initializes all local variables.
 	 * @param connection The connection with the server, used for loading images and list of available POUIs.
 	 */
-	public StartupView(ServerConnection connection) {
+	public StartupView(ClientServerConnection connection) {
 		this.connection = connection;
 		mainFrame = new JFrame("Welcome");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,6 +1,6 @@
 package main;
 
-import connections.ServerConnection;
+import connections.ClientServerConnection;
 import views.StartupView;
 
 /**
@@ -14,7 +14,7 @@ public class Client {
 	 * @param args Standard PSVM arguments, not currently used in this program.
 	 */
 	public static void main(String[] args) {
-		ServerConnection connection = new ServerConnection();
+		ClientServerConnection connection = new ClientServerConnection();
 		StartupView startup = new StartupView(connection);
 		startup.makeVisible();
 	}

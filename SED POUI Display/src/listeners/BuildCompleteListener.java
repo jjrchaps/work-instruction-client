@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import auxiliary.ClientPOUI;
-import connections.ServerConnection;
+import connections.ClientServerConnection;
 
 /**
  * BuildCompleteListener is an action listener for the 'Build Complete' button in
@@ -25,7 +25,7 @@ public class BuildCompleteListener implements ActionListener {
 	/**
 	 * Connection to the POUI server that will be used to report build times.
 	 */
-	private ServerConnection connection;
+	private ClientServerConnection connection;
 	
 	/**
 	 * The assembly that will be completed where the build timings can be fetched.
@@ -39,7 +39,7 @@ public class BuildCompleteListener implements ActionListener {
 	 * @param connection A connection with the POUI server
 	 * @paran poui The poui that's currently being displayed to the user.
 	 */
-	public BuildCompleteListener(JFrame viewFrame, ServerConnection connection, ClientPOUI poui) {
+	public BuildCompleteListener(JFrame viewFrame, ClientServerConnection connection, ClientPOUI poui) {
 		this.viewFrame = viewFrame;
 		this.connection = connection;
 		this.poui = poui;

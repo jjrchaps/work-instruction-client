@@ -17,7 +17,7 @@ import auxiliary.Images;
  * @author jameschapman
  *
  */
-public class ServerConnection {
+public class ClientServerConnection {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private ObjectInputStream in;
@@ -26,7 +26,7 @@ public class ServerConnection {
 	 * Constructor will initialize a connection with the server as well as the input
 	 * and output stream for future use
 	 */
-	public ServerConnection() {
+	public ClientServerConnection() {
 		reconnect();
 	}
 

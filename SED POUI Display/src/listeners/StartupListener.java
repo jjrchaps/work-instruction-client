@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JComboBox;
 
 import auxiliary.ClientPOUI;
-import connections.ServerConnection;
+import connections.ClientServerConnection;
 import views.POUIView;
 
 /**
@@ -26,14 +26,14 @@ public class StartupListener implements ActionListener, KeyListener {
 	 * A instance of ServerConnection that serves as our server connection -- used to fetch
 	 * the POUIs from the server.
 	 */
-	private ServerConnection connection;
+	private ClientServerConnection connection;
 
 	/**
 	 * Constructor for StartupListener that initializes local variables with the given parameters
 	 * @param comboBox The comboBox that displays assemblies to the user
 	 * @param connection A connection with the POUI server to be used to fetch images
 	 */
-	public StartupListener(JComboBox<String> comboBox, ServerConnection connection) {
+	public StartupListener(JComboBox<String> comboBox, ClientServerConnection connection) {
 		this.comboBox = comboBox;
 		this.connection = connection;
 	}
