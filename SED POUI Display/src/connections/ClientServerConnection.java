@@ -27,9 +27,18 @@ public class ClientServerConnection {
 	 * and output stream for future use
 	 */
 	public ClientServerConnection() {
-		reconnect();
+		while (true) {
+			try {
+				clientSocket = new Socket("localhost", 12312);
+				out = new PrintWriter(clientSocket.getOutputStream());
+				in = new ObjectInputStream(clientSocket.getInputStream());
+				break;
+			} catch (IOException e) {
+				// do nothing, as loop will continue until successful connection is established.
+			}
+		}
 	}
-	
+
 	/**
 	 * Attempts to re-establish a connection with the server, and doesn't stop
 	 * until a connection has been successfully established.
