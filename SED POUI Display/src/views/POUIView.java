@@ -55,6 +55,7 @@ public class POUIView {
 		this.mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.mainFrame.add(createPanels());
 		this.mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.mainFrame.setUndecorated(true);
 		this.mainFrame.setVisible(true);
 	}
 	
