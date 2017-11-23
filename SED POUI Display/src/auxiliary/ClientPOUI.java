@@ -22,6 +22,11 @@ public class ClientPOUI {
 	 * Iterator to go over steps in order when build is taking place
 	 */
 	ListIterator<ImageIcon> iterator;
+	
+	/**
+	 * Array containing whether or not a given step requires a level 3 inspection
+	 */
+	boolean[] inspectionRequired;
 
 	/**
 	 * Setting to track when the next button was clicked. This will ensure the iterator serves up the 
@@ -61,9 +66,10 @@ public class ClientPOUI {
 	 * @param imageLocation The path to the images for this assembly. They should be name "step1.jpg", "step2.jpg", etc. and the path
 	 * supplied should end with a forward slash
 	 */
-	public ClientPOUI(Images images, String productID) throws IOException {
+	public ClientPOUI(Images images, String productID, boolean[] inspectionRequired) throws IOException {
 		this.images = images.getImages();
 		this.productID = productID;
+		this.inspectionRequired = inspectionRequired;
 		iterator = (ListIterator<ImageIcon>) this.images.iterator();
 		nextWasCalled = false;
 		previousWasCalled = true;
