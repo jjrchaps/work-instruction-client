@@ -72,8 +72,9 @@ public class ClientServerConnection {
 				out.println("pouirequest:" + productID);
 				out.flush();
 				Object received = in.readObject();
-				if (received instanceof Images) {
-					return new ClientPOUI((Images) received, productID);
+				Object nextReceived = in.readObject();
+				if (received instanceof Images && nextReceived instanceof boolean[]) {
+					return new ClientPOUI((Images) received, productID, (boolean[]) nextReceived);
 				}
 				break;
 			} catch (IOException e) {
