@@ -69,9 +69,11 @@ public class ClientServerConnection {
 		// information we are seeking
 		while (true) {
 			try {
-				out.println("pouirequest:" + productID);
+				out.println("pouiimagerequest:" + productID);
 				out.flush();
 				Object received = in.readObject();
+				out.println("pouiinspectionrequest:" + productID);
+				out.flush();
 				Object nextReceived = in.readObject();
 				if (received instanceof Images && nextReceived instanceof boolean[]) {
 					return new ClientPOUI((Images) received, productID, (boolean[]) nextReceived);
