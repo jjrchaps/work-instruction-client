@@ -187,4 +187,11 @@ public class ClientPOUI {
 		}
 		return stringTimings;
 	}
+	
+	/**
+	 * Will remove the inspection requirement from the boolean array so that the inspection will not be required in the future.
+	 */
+	public void setCurrentStepInspected() {
+		inspectionRequired[inspectionArrayPosition] = false;
+	}
 }
