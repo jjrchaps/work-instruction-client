@@ -3,15 +3,16 @@ package views;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import listeners.InspectSubmitListener;
+import listeners.NextButtonListener;
+
 /**
- * InspectionAuthenticationView will be displayed whenver the user tries to continue on to
+ * InspectionAuthenticationView will be displayed whenever the user tries to continue on to
  * the next step of a POUI and the current step requires a level three inspection to be 
  * completed. Once inspection is completed the user will have to enter the identifying 
  * number assigned to them, which will be logged to the server and stored.
@@ -23,8 +24,18 @@ public class InspectionAuthenticationView {
 	 */
 	private JFrame mainFrame;
 	
-	public InspectionAuthenticationView() {
-		mainFrame = new JFrame("Enter Stamp Number");
+	/**
+	 * Next button so that this view can initiate the changing of images once the user has entered
+	 * their stamp ID
+	 */
+	private NextButtonListener nextListener;
+	
+	/**
+	 * Creates new instance of the inspection view, and displays in in the middle of the display.
+	 */
+	public InspectionAuthenticationView(NextButtonListener nextListener) {
+		this.nextListener = nextListener;
+		mainFrame = new JFrame("Inspection");
 		mainFrame.add(createPanel());
 		mainFrame.pack();
 		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -39,21 +50,22 @@ public class InspectionAuthenticationView {
 	 */
 	private JPanel createPanel() {
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 		
-		JTextField textEnter = new JTextField("Enter number here");
-		textEnter.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+		JTextField textEnter = new JTextField("Stamp ID");
 		mainPanel.add(textEnter);
 		
 		JButton submitButton = new JButton("Submit");
-		submitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		submitButton.addActionListener(new InspectSubmitListener(this, textEnter));
 		mainPanel.add(submitButton);
 		
 		return mainPanel;
 	}
 	
-	public void makeVisible() {
+	public void displayNext() {
+		this.nextListener.displayNext();
+	}
+	
+	public void setVisible() {
 		mainFrame.setVisible(true);
 	}
 	
