@@ -26,7 +26,13 @@ public class ClientPOUI {
 	/**
 	 * Array containing whether or not a given step requires a level 3 inspection
 	 */
-	boolean[] inspectionRequired;
+	private boolean[] inspectionRequired;
+	
+	/**
+	 * Int to keep track of which step is being displayed to enable checking whether
+	 * an inspection is necessary or not
+	 */
+	private int inspectionArrayPosition;
 
 	/**
 	 * Setting to track when the next button was clicked. This will ensure the iterator serves up the 
@@ -70,12 +76,13 @@ public class ClientPOUI {
 		this.images = images.getImages();
 		this.productID = productID;
 		this.inspectionRequired = inspectionRequired;
-		iterator = (ListIterator<ImageIcon>) this.images.iterator();
-		nextWasCalled = false;
-		previousWasCalled = true;
-		timings = new float[images.getImages().size()];
+		this.inspectionArrayPosition = 0;
+		this.iterator = (ListIterator<ImageIcon>) this.images.iterator();
+		this.nextWasCalled = false;
+		this.previousWasCalled = true;
+		this.timings = new float[images.getImages().size()];
 		for (int i = 0; i < timings.length; i++) {
-			timings[i] = 0;
+			this.timings[i] = 0;
 		}
 	}
 
@@ -108,6 +115,7 @@ public class ClientPOUI {
 			timings[iterator.previousIndex()-1] += roundedTime.floatValue();
 			startTime = System.nanoTime();
 			nextWasCalled = true;
+			inspectionArrayPosition++;
 			return next;
 		}
 		else {
@@ -134,6 +142,7 @@ public class ClientPOUI {
 			timings[iterator.nextIndex()+1] += roundedTime.floatValue();
 			startTime = System.nanoTime();
 			previousWasCalled = true;
+			inspectionArrayPosition--;
 			return previous;
 		}
 		else {
@@ -147,6 +156,14 @@ public class ClientPOUI {
 
 	public boolean hasPrevious() {
 		return iterator.hasPrevious();
+	}
+	
+	/**
+	 * Check whether or not the current step requires a level 3 inspection
+	 * @return True if an inspection is required, false otherwise.
+	 */
+	public boolean requiresInspection() {
+		return inspectionRequired[inspectionArrayPosition];
 	}
 
 	/**
