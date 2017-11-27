@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import connections.ClientServerConnection;
 import listeners.InspectSubmitListener;
 import listeners.NextButtonListener;
 
@@ -31,10 +32,28 @@ public class InspectionAuthenticationView {
 	private NextButtonListener nextListener;
 	
 	/**
+	 * A connection with the server for authenticate a user is allowed to perform a level 3 inspection.
+	 */
+	private ClientServerConnection connection;
+	
+	/**
+	 * The current step number that is being checked
+	 */
+	private int currentStep;
+	
+	/**
+	 * The product ID that the inspect is being authenticated for
+	 */
+	private String productID;
+	
+	/**
 	 * Creates new instance of the inspection view, and displays in in the middle of the display.
 	 */
-	public InspectionAuthenticationView(NextButtonListener nextListener) {
+	public InspectionAuthenticationView(NextButtonListener nextListener, ClientServerConnection connection, int currentStep, String productID) {
 		this.nextListener = nextListener;
+		this.connection = connection;
+		this.currentStep = currentStep;
+		this.productID = productID;
 		mainFrame = new JFrame("Inspection");
 		mainFrame.add(createPanel());
 		mainFrame.pack();
@@ -52,10 +71,11 @@ public class InspectionAuthenticationView {
 		JPanel mainPanel = new JPanel();
 		
 		JTextField textEnter = new JTextField("Stamp ID");
+		textEnter.addActionListener(new InspectSubmitListener(this, textEnter, connection, currentStep, productID));
 		mainPanel.add(textEnter);
 		
 		JButton submitButton = new JButton("Submit");
-		submitButton.addActionListener(new InspectSubmitListener(this, textEnter));
+		submitButton.addActionListener(new InspectSubmitListener(this, textEnter, connection, currentStep, productID));
 		mainPanel.add(submitButton);
 		
 		return mainPanel;
