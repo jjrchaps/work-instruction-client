@@ -101,7 +101,7 @@ public class POUIView {
 		// add action listeners to buttons
 		PreviousButtonListener previousListener = new PreviousButtonListener(assemblyPOUI, poui, complete);
 		previous.addActionListener(previousListener);
-		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete);
+		NextButtonListener nextListener = new NextButtonListener(assemblyPOUI, poui, complete, connection);
 		next.addActionListener(nextListener);
 		BuildCompleteListener completeListener = new BuildCompleteListener(mainFrame, connection, assemblyPOUI);
 		complete.addActionListener(completeListener);
