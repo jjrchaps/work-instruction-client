@@ -2,6 +2,8 @@ package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +16,7 @@ import views.InspectionAuthenticationView;
  * Listener for the next button in the pouiview class. If there is another image, it will display it.
  * @author jameschapman
  */
-public class NextButtonListener implements ActionListener {
+public class NextButtonListener implements ActionListener, KeyListener {
 	/** 
 	 * save an instance of the POUI we're working on to pull up future steps
 	 */
@@ -50,6 +52,31 @@ public class NextButtonListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		wasActivated();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			wasActivated();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// do nothing
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// do nothing.
+	}
+	
+	/**
+	 * If either the next button was clicked or the right arrow was pressed, this method will
+	 * start the changing of images.
+	 */
+	public void wasActivated() {
 		if (poui.requiresInspection()) {
 			InspectionAuthenticationView inspectView = new InspectionAuthenticationView(this, connection, 
 					poui.getCurrentStepNumber(), poui.getProductID());
@@ -60,8 +87,10 @@ public class NextButtonListener implements ActionListener {
 		}
 	}
 
+	/**
+	 * Displays the next image in the poui, if there is one.
+	 */
 	public void displayNext() {
-		// if the user ID is null it means that no reporting to server is necessary.
 		poui.setCurrentStepInspected();
 		if (poui.hasNext()) {
 			imageLabel.setIcon(poui.nextStep());
