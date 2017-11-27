@@ -194,4 +194,19 @@ public class ClientPOUI {
 	public void setCurrentStepInspected() {
 		inspectionRequired[inspectionArrayPosition] = false;
 	}
+	
+	/**
+	 * Get the current step that's being displayed
+	 * @return
+	 */
+	public int getCurrentStepNumber() {
+		return inspectionArrayPosition+1;
+	}
+	
+	/**
+	 * Returns the product ID that this poui is for
+	 */
+	public String getProductID() {
+		return this.productID;
+	}
 }
