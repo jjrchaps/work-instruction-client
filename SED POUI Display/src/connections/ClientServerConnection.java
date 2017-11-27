@@ -141,4 +141,33 @@ public class ClientServerConnection {
 			}
 		}
 	}
+	
+	/**
+	 * Formats a request to send to the server that will return whether or not a specific user is allowed to perform
+	 * a level 3 inspection at the current level.
+	 * @param userID The stamp ID number of the user attempting to be authenticated
+	 * @param productID The product that is currently being assembled.
+	 * @param currentStep The current step that the user is attempting to be approved to inspect.
+	 * @return True if the user can authorize the inspection, false otherwise.
+	 */
+	public boolean checkInspectionPrivilege(String userID, String productID, int currentStep) {
+		String inspectionCheckRequest = ("inspectionCheckRequest:") + userID + ":" + productID + ":" + currentStep;
+		boolean response = false;
+		while (true) {
+			out.println(inspectionCheckRequest);
+			out.flush();
+			try {
+				Object received = in.readObject();
+				if (received instanceof Boolean) {
+					response = (boolean) received;
+					break;
+				}
+			} catch (IOException e) {
+				reconnect();
+			} catch (ClassNotFoundException e) {
+				System.out.println("Invalid response from server!");
+			}
+		}
+		return response;
+	}
 }
