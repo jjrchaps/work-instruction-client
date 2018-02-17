@@ -29,7 +29,7 @@ public class ClientServerConnection {
 	public ClientServerConnection() {
 		while (true) {
 			try {
-				clientSocket = new Socket("localhost", 12312);
+				clientSocket = new Socket("192.168.0.101", 12312);
 				out = new PrintWriter(clientSocket.getOutputStream());
 				in = new ObjectInputStream(clientSocket.getInputStream());
 				break;
