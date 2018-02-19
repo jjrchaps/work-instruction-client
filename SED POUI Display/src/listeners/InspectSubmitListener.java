@@ -89,7 +89,7 @@ public class InspectSubmitListener implements ActionListener, KeyListener {
 			textField.setText("Enter ID");
 		}
 		else if (connection.checkInspectionPrivilege(userText, productID, currentStep)) {
-			inspectionView.displayNext();
+			inspectionView.displayNextAfterAuthentication();
 			inspectionView.hideFrame();
 		}
 		else {
