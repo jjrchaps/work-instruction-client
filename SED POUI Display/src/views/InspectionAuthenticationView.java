@@ -81,6 +81,9 @@ public class InspectionAuthenticationView {
 		return mainPanel;
 	}
 	
+	/**
+	 * Displays the next image for the current POUI, if there is one.
+	 */
 	public void displayNext() {
 		this.nextListener.displayNext();
 	}
