@@ -31,12 +31,17 @@ public class NextButtonListener implements ActionListener, KeyListener {
 	 * complete button instance so that it's visibility can be dynamically changed
 	 */
 	private JButton completeButton;
-	
+
 	/**
 	 * A connection to the server, to be passed along to the inspection view when necessary
 	 */
 	private ClientServerConnection connection;
-	
+
+	/**
+	 * Boolean to track whether or not the inspection view is already being shown to the user.
+	 */
+	private boolean inspectionCurrentlyDisplayed;
+
 	/**
 	 * Prepares local instance variables for all parameters so the button is able to swap images when desired.
 	 * @param poui The poui that is currently being displayed
@@ -71,19 +76,24 @@ public class NextButtonListener implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// do nothing.
 	}
-	
+
 	/**
 	 * If either the next button was clicked or the right arrow was pressed, this method will
 	 * start the changing of images.
 	 */
 	public void wasActivated() {
-		if (poui.requiresInspection()) {
-			InspectionAuthenticationView inspectView = new InspectionAuthenticationView(this, connection, 
-					poui.getCurrentStepNumber(), poui.getProductID());
-			inspectView.setVisible();
-		}
-		else {
-			displayNext();
+		// if this step requires inspection and the inspection view isn't already
+		// being shown, create a new instance and display.
+		if (inspectionCurrentlyDisplayed == false) {
+			if (poui.requiresInspection()) {
+				inspectionCurrentlyDisplayed = true;
+				InspectionAuthenticationView inspectView = new InspectionAuthenticationView(this, connection, 
+						poui.getCurrentStepNumber(), poui.getProductID());
+				inspectView.setVisible();
+			}
+			else {
+				displayNext();
+			}
 		}
 	}
 
@@ -98,5 +108,15 @@ public class NextButtonListener implements ActionListener, KeyListener {
 				completeButton.setVisible(true);
 			}
 		}
+	}
+
+	/**
+	 * Method to display the next image after an inspection has been authenticated. This way the boolean
+	 * tracking the inspection display isn't being accessed unnecessarily whenever a new image is
+	 * displayed.
+	 */
+	public void displayNextAfterAuthentication() {
+		inspectionCurrentlyDisplayed = false;
+		this.displayNext();
 	}
 }
