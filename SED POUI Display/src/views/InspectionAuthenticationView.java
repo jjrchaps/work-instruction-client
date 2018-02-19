@@ -57,6 +57,7 @@ public class InspectionAuthenticationView {
 		mainFrame = new JFrame("Inspection");
 		mainFrame.add(createPanel());
 		mainFrame.pack();
+		mainFrame.setAlwaysOnTop(true);
 		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		mainFrame.setLocation(dim.width/2-mainFrame.getSize().width/2, dim.height/2-mainFrame.getSize().height/2);
@@ -86,6 +87,13 @@ public class InspectionAuthenticationView {
 	 */
 	public void displayNext() {
 		this.nextListener.displayNext();
+	}
+	
+	/**
+	 * Displays the next image after the server inspection authentication
+	 */
+	public void displayNextAfterAuthentication() {
+		this.nextListener.displayNextAfterAuthentication();
 	}
 	
 	public void setVisible() {
