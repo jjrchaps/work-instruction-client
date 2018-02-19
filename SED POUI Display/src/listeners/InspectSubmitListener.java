@@ -9,6 +9,13 @@ import javax.swing.JTextField;
 import connections.ClientServerConnection;
 import views.InspectionAuthenticationView;
 
+/**
+ * InspectSubmitListener is an action listener for the submit button within the inspection
+ * view dialog box that appears when an inspection is required. The dialog box will submit
+ * whatever is within the inspection view's text field and authenticate the ID with the
+ * server.
+ * @author jameschapman
+ */
 public class InspectSubmitListener implements ActionListener, KeyListener {
 	/**
 	 * Stores the calling instance of InspectionAuthenticationView for use once
@@ -69,10 +76,19 @@ public class InspectSubmitListener implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// do nothing
 	}
-
+	
+	/**
+	 * Checks ID that user entered into text field and authenticates with the server.
+	 * If the server accepts the ID, the dialog box will disappear and the next step
+	 * will be displayed. If it is not accepted, a "Try Again" message will be placed
+	 * within the text field.
+	 */
 	private void checkEnteredText() {
-		String userText = textField.getText();			
-		if (connection.checkInspectionPrivilege(userText, productID, currentStep)) {
+		String userText = textField.getText();
+		if (userText.equals("Stamp ID")) {
+			textField.setText("Enter ID");
+		}
+		else if (connection.checkInspectionPrivilege(userText, productID, currentStep)) {
 			inspectionView.displayNext();
 			inspectionView.hideFrame();
 		}
