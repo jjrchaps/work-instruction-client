@@ -70,12 +70,12 @@ public class InspectionAuthenticationView {
 	private JPanel createPanel() {
 		JPanel mainPanel = new JPanel();
 		
-		JTextField textEnter = new JTextField("Stamp ID");
-		textEnter.addActionListener(new InspectSubmitListener(this, textEnter, connection, currentStep, productID));
-		mainPanel.add(textEnter);
+		JTextField stampField = new JTextField("Stamp ID");
+		stampField.addActionListener(new InspectSubmitListener(this, stampField, connection, currentStep, productID));
+		mainPanel.add(stampField);
 		
 		JButton submitButton = new JButton("Submit");
-		submitButton.addActionListener(new InspectSubmitListener(this, textEnter, connection, currentStep, productID));
+		submitButton.addActionListener(new InspectSubmitListener(this, stampField, connection, currentStep, productID));
 		mainPanel.add(submitButton);
 		
 		return mainPanel;
