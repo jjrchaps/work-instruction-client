@@ -8,14 +8,11 @@ import java.net.Socket;
 import auxiliary.ClientPOUI;
 import auxiliary.Images;
 
-//TODO: Class requires better error handling and catching
-
 /**
  * ClientServerConnection will act as the local method to encapsulate all communication
  * with the server in one place. A connection will be established on startup and maintained
  * throughout the use of the program.
  * @author jameschapman
- *
  */
 public class ClientServerConnection {
 	private Socket clientSocket;
@@ -29,7 +26,7 @@ public class ClientServerConnection {
 	public ClientServerConnection() {
 		while (true) {
 			try {
-				clientSocket = new Socket("192.168.0.101", 12312);
+				clientSocket = new Socket("localhost", 12312);
 				out = new PrintWriter(clientSocket.getOutputStream());
 				in = new ObjectInputStream(clientSocket.getInputStream());
 				break;
