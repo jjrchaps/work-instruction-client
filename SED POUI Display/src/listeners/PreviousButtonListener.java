@@ -17,10 +17,12 @@ public class PreviousButtonListener implements ActionListener {
 	 * save an instance of the POUI we're working on to pull up future steps
 	 */
 	private ClientPOUI poui;
+	
 	/**
 	 * instance of the imagePanel that is displayed in the POUIView
 	 */
 	private JLabel imageLabel;
+	
 	/**
 	 *  instance of JButton to store the build complete button, this allows it to be dynamically 
 	 *  controlled as the directions are followed
