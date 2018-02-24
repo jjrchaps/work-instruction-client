@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 import auxiliary.ClientPOUI;
 import auxiliary.Images;
@@ -48,6 +49,16 @@ public class ClientServerConnection {
 				// do nothing, as loop will continue until successful connection is established.
 			}
 		}
+		
+		// add a timed sleep so that the user gets to "see" the POUI system connect to the server.
+		// Some users will find this comforting.
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			// since this is just to make it look like it's working how people expect it to, we don't
+			// need to handle this error
+		}
+		connecting.hideFrame();
 	}
 
 	/**
