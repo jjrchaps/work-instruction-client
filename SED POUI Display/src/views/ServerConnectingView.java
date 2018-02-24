@@ -3,9 +3,10 @@ package views;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class ServerConnectingView {
 	/**
@@ -21,7 +22,7 @@ public class ServerConnectingView {
 		mainFrame.add(createPanel());
 		mainFrame.pack();
 		mainFrame.setAlwaysOnTop(true);
-		mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		mainFrame.setLocation(dim.width/2-mainFrame.getSize().width/2, dim.height/2-mainFrame.getSize().height/2);
 	}
@@ -34,7 +35,8 @@ public class ServerConnectingView {
 	private JPanel createPanel() {
 		JPanel mainPanel = new JPanel();
 		
-		JTextField message = new JTextField("Connecting to server...");
+		JLabel message = new JLabel("Connecting to server...");
+		message.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 		mainPanel.add(message);
 		
 		return mainPanel;
