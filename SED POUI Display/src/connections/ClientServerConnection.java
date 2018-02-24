@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import auxiliary.ClientPOUI;
 import auxiliary.Images;
+import views.ServerConnectingView;
 
 /**
  * ClientServerConnection will act as the local method to encapsulate all communication
@@ -15,8 +16,19 @@ import auxiliary.Images;
  * @author jameschapman
  */
 public class ClientServerConnection {
+	/**
+	 * Socket that will be used to communicate with the server
+	 */
 	private Socket clientSocket;
+
+	/**
+	 * Output stream for sending messages to the server
+	 */
 	private PrintWriter out;
+
+	/**
+	 * Input stream for receiving message from the server
+	 */
 	private ObjectInputStream in;
 
 	/**
@@ -24,6 +36,8 @@ public class ClientServerConnection {
 	 * and output stream for future use
 	 */
 	public ClientServerConnection() {
+		ServerConnectingView connecting = new ServerConnectingView();
+		connecting.setVisible();
 		while (true) {
 			try {
 				clientSocket = new Socket("localhost", 12312);
@@ -138,7 +152,7 @@ public class ClientServerConnection {
 			}
 		}
 	}
-	
+
 	/**
 	 * Formats a request to send to the server that will return whether or not a specific user is allowed to perform
 	 * a level 3 inspection at the current level.
