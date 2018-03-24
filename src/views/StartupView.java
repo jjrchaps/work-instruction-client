@@ -16,8 +16,8 @@ import connections.ClientServerConnection;
 import listeners.StartupListener;
 
 /**
- * StartUp view is what the user will first see when the program is launched. It has a quick explanation and welcome
- * message, and then a box to enter the SED product ID of the unit they are about to build.
+ * StartUp view is what the user will first see when the program is launched. A simple welcome is displayed
+ * as well as a combo box to select an assembly to build.
  * @author jameschapman
  */
 public class StartupView {
