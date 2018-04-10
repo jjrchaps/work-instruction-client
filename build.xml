@@ -1,0 +1,28 @@
+<?xml version = "1.0"?>
+<project name = "Work Instruction Client" default = "info">
+	<target name = "info">
+		<echo> Work Instrcution Client, meant to be used in tandem with Work Instruction Server </echo>
+	</target>
+	
+	<target name = "init">
+		<mkdir dir = "build/classes" />
+		<mkdir dir = "dist" />
+	</target>
+	
+	<target name= "compile" depends = "init">
+		<javac includeantruntime = "false" srcdir = "src" destdir = "build/classes" />
+	</target>
+	
+	<target name = "createJar" depends = "compile">
+		<jar destfile = "dist/Client.jar" basedir = "build/classes">
+			<manifest>
+				<attribute name = "Main-Class" value = "main.Client"/>	
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name = "clean"> 
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+</project>
