@@ -16,11 +16,12 @@ import connections.ClientServerConnection;
 import listeners.StartupListener;
 
 /**
- * StartUp view is what the user will first see when the program is launched. A simple welcome is displayed
- * as well as a combo box to select an assembly to build.
+ * BuildSelectionView is the view displayed to the user to select which work instruction
+ * will be built. A simple welcome is displayed as well as a combo box to select an assembly 
+ * to build.
  * @author jameschapman
  */
-public class StartupView {
+public class BuildSelectionView {
 	/**
 	 * The frame that contains the welcome message and method to select POUI to load.
 	 */
@@ -35,7 +36,7 @@ public class StartupView {
 	 * Constructor for StartupView, takes in a connection object and initializes all local variables.
 	 * @param connection The connection with the server, used for loading images and list of available POUIs.
 	 */
-	public StartupView(ClientServerConnection connection) {
+	public BuildSelectionView(ClientServerConnection connection) {
 		this.connection = connection;
 		mainFrame = new JFrame("Welcome");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
