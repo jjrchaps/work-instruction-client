@@ -77,7 +77,7 @@ public class ConnectionDetailSubmitListener implements ActionListener, KeyListen
 	private void connectToServer() {
 		promptView.hideFrame();
 		String ipAddress = this.ipAddress.getText();
-		ipAddress.replaceAll("\\s", "");
+		ipAddress = ipAddress.replaceAll("\\s", "");
 		int port = Integer.parseInt(this.portNumber.getText());
 		ClientServerConnection serverConnection = new ClientServerConnection(ipAddress, port);
 		BuildSelectionView startup = new BuildSelectionView(serverConnection);
