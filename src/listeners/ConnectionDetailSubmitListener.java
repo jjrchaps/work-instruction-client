@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 import connections.ClientServerConnection;
 import views.ConnectionDetailsPrompt;
-import views.StartupView;
+import views.BuildSelectionView;
 
 /**
  * ConnectionDetailsSubmitListener is the listener for the submit button located
@@ -56,7 +56,7 @@ public class ConnectionDetailSubmitListener implements ActionListener, KeyListen
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		startServer();
+		connectToServer();
 
 	}
 
@@ -67,19 +67,19 @@ public class ConnectionDetailSubmitListener implements ActionListener, KeyListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		startServer();
+		connectToServer();
 	}
 
 	/**
 	 * Starts a connection with the work instruction server the the information parsed
 	 * from the IP Address and Port number fields.
 	 */
-	private void startServer() {
+	private void connectToServer() {
 		promptView.hideFrame();
 		String ipAddress = this.ipAddress.getText();
 		int port = Integer.parseInt(this.portNumber.getText());
 		ClientServerConnection serverConnection = new ClientServerConnection(ipAddress, port);
-		StartupView startup = new StartupView(serverConnection);
+		BuildSelectionView startup = new BuildSelectionView(serverConnection);
 		startup.makeVisible();
 	}
 }
