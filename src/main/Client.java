@@ -3,8 +3,8 @@ package main;
 import views.ConnectionDetailsPrompt;
 
 /**
- * This serves as the main entry point to the program. It establishes a connection with the POUI server
- * and once connected shows the startup screen.
+ * This serves as the main entry point to the program. It opens a view to prompt the user for the
+ * server IP address and port number to reach the work instruction server with.
  * @author jameschapman
  */
 public class Client {
