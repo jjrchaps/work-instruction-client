@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 import auxiliary.ClientPOUI;
 import auxiliary.Images;
-import views.ServerConnectingView;
 
 /**
  * ClientServerConnection will act as the local method to encapsulate all communication
@@ -35,13 +33,13 @@ public class ClientServerConnection {
 	/**
 	 * Constructor will initialize a connection with the server as well as the input
 	 * and output stream for future use
+	 * @param ipAddress The ipAddress of the server with the work instructions
+	 * @param port The port to connect to at the given IP Address
 	 */
-	public ClientServerConnection() {
-		ServerConnectingView connecting = new ServerConnectingView();
-		connecting.setVisible();
+	public ClientServerConnection(String ipAddress, int port) {
 		while (true) {
 			try {
-				clientSocket = new Socket("localhost", 12312);
+				clientSocket = new Socket(ipAddress, port);
 				out = new PrintWriter(clientSocket.getOutputStream());
 				in = new ObjectInputStream(clientSocket.getInputStream());
 				break;
@@ -49,16 +47,6 @@ public class ClientServerConnection {
 				// do nothing, as loop will continue until successful connection is established.
 			}
 		}
-		
-		// add a timed sleep so that the user gets to "see" the POUI system connect to the server.
-		// Some users will find this comforting.
-		try {
-			TimeUnit.SECONDS.sleep(3);
-		} catch (InterruptedException e) {
-			// since this is just to make it look like it's working how people expect it to, we don't
-			// need to handle this error
-		}
-		connecting.hideFrame();
 	}
 
 	/**
