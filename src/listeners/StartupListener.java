@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 
 import auxiliary.ClientPOUI;
 import connections.ClientServerConnection;
+import views.BuildSelectionView;
 import views.POUIView;
 
 /**
@@ -23,17 +24,24 @@ public class StartupListener implements ActionListener, KeyListener {
 	private JComboBox<String> comboBox;
 	
 	/**
-	 * A instance of ServerConnection that serves as our server connection -- used to fetch
+	 * An instance of ServerConnection that serves as our server connection -- used to fetch
 	 * the POUIs from the server.
 	 */
 	private ClientServerConnection connection;
+	
+	/**
+	 * The view being displayed to the user to select an assembly
+	 */
+	private BuildSelectionView view;
 
 	/**
 	 * Constructor for StartupListener that initializes local variables with the given parameters
+	 * @param view The view that is being displayed to the user
 	 * @param comboBox The comboBox that displays assemblies to the user
 	 * @param connection A connection with the POUI server to be used to fetch images
 	 */
-	public StartupListener(JComboBox<String> comboBox, ClientServerConnection connection) {
+	public StartupListener(BuildSelectionView view, JComboBox<String> comboBox, ClientServerConnection connection) {
+		this.view = view;
 		this.comboBox = comboBox;
 		this.connection = connection;
 	}
@@ -69,6 +77,7 @@ public class StartupListener implements ActionListener, KeyListener {
 		if (poui != null) {
 			POUIView instructionView = new POUIView(poui, connection);
 			instructionView.setVisible();
+			view.hideFrame();
 		}
 	}
 
