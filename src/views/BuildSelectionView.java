@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import connections.ClientServerConnection;
 import listeners.BuildSelectionListener;
+import listeners.RefreshListener;
 
 /**
  * BuildSelectionView is the view displayed to the user to select which work instruction
@@ -72,12 +73,14 @@ public class BuildSelectionView {
 
 		JButton refreshButton = new JButton("Refresh List");
 		refreshButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		RefreshListener refreshListener = new RefreshListener(connection, comboBox);
+		refreshButton.addActionListener(refreshListener);
 		mainPanel.add(refreshButton);
 		
 		JButton submitButton = new JButton("Submit");
 		submitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		BuildSelectionListener listener = new BuildSelectionListener(this, comboBox, connection);
-		submitButton.addActionListener(listener);
+		BuildSelectionListener selectListener = new BuildSelectionListener(this, comboBox, connection);
+		submitButton.addActionListener(selectListener);
 		mainPanel.add(submitButton);
 		
 		return mainPanel;
