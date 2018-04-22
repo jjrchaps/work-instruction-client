@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import connections.ClientServerConnection;
-import listeners.StartupListener;
+import listeners.BuildSelectionListener;
 
 /**
  * BuildSelectionView is the view displayed to the user to select which work instruction
@@ -70,9 +70,13 @@ public class BuildSelectionView {
 		comboBox.setAlignmentX(JComboBox.CENTER_ALIGNMENT);
 		mainPanel.add(comboBox);
 
+		JButton refreshButton = new JButton("Refresh List");
+		refreshButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		mainPanel.add(refreshButton);
+		
 		JButton submitButton = new JButton("Submit");
 		submitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		StartupListener listener = new StartupListener(comboBox, connection);
+		BuildSelectionListener listener = new BuildSelectionListener(this, comboBox, connection);
 		submitButton.addActionListener(listener);
 		mainPanel.add(submitButton);
 		

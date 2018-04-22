@@ -16,7 +16,7 @@ import views.POUIView;
  * the program to fetch the selected POUI and display it
  * @author jameschapman
  */
-public class StartupListener implements ActionListener, KeyListener {
+public class BuildSelectionListener implements ActionListener, KeyListener {
 	/**
 	 * Local instance of JComboBox, stores a reference from the StartupView's JComboBox
 	 * so that we can access what the user has selected.
@@ -40,7 +40,7 @@ public class StartupListener implements ActionListener, KeyListener {
 	 * @param comboBox The comboBox that displays assemblies to the user
 	 * @param connection A connection with the POUI server to be used to fetch images
 	 */
-	public StartupListener(BuildSelectionView view, JComboBox<String> comboBox, ClientServerConnection connection) {
+	public BuildSelectionListener(BuildSelectionView view, JComboBox<String> comboBox, ClientServerConnection connection) {
 		this.view = view;
 		this.comboBox = comboBox;
 		this.connection = connection;
