@@ -29,19 +29,13 @@ public class BuildSelectionListener implements ActionListener, KeyListener {
 	 */
 	private ClientServerConnection connection;
 	
-	/**
-	 * The view being displayed to the user to select an assembly
-	 */
-	private BuildSelectionView view;
 
 	/**
 	 * Constructor for StartupListener that initializes local variables with the given parameters
-	 * @param view The view that is being displayed to the user
 	 * @param comboBox The comboBox that displays assemblies to the user
 	 * @param connection A connection with the POUI server to be used to fetch images
 	 */
 	public BuildSelectionListener(BuildSelectionView view, JComboBox<String> comboBox, ClientServerConnection connection) {
-		this.view = view;
 		this.comboBox = comboBox;
 		this.connection = connection;
 	}
@@ -77,7 +71,6 @@ public class BuildSelectionListener implements ActionListener, KeyListener {
 		if (poui != null) {
 			POUIView instructionView = new POUIView(poui, connection);
 			instructionView.setVisible();
-			view.hideFrame();
 		}
 	}
 
