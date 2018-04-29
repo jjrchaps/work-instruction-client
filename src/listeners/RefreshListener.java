@@ -7,6 +7,12 @@ import javax.swing.JComboBox;
 
 import connections.ClientServerConnection;
 
+/**
+ * Listener for the refresh button in the build selection view. When clicked, it will fetch
+ * an updated list of available builds from the server and update the combo box with the new
+ * list.
+ * @author jameschapman
+ */
 public class RefreshListener implements ActionListener {
 	/**
 	 * The current connection with the server, to be used to fetch updated build lists
@@ -18,6 +24,11 @@ public class RefreshListener implements ActionListener {
 	 */
 	private JComboBox<String> comboBox;
 	
+	/**
+	 * Creates a new instance of RefreshListener to update available build list.
+	 * @param connection The current connection with the server, for fetching the new list
+	 * @param comboBox The combo box that the contents need to be updated in.
+	 */
 	public RefreshListener(ClientServerConnection connection, JComboBox<String> comboBox) {
 		this.connection = connection;
 		this.comboBox = comboBox;
@@ -25,7 +36,12 @@ public class RefreshListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		comboBox = new JComboBox<String>(connection.getProductIDs());
+		comboBox.removeAllItems();
+		comboBox.addItem("Did this work?");
+		String[] newOptions = connection.getProductIDs();
+		for (String item : newOptions) {
+			comboBox.addItem(item);
+		}
 	}
 
 }
