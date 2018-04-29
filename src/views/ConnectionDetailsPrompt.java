@@ -48,12 +48,17 @@ public class ConnectionDetailsPrompt {
 		
 		JTextField portField = new JTextField("  PORT  ");
 		mainPanel.add(portField);
-
+		
 		JButton submitButton = new JButton("Submit");
-		submitButton.addActionListener(new ConnectionDetailSubmitListener(this, 
-				ipAddressField, portField));
 		mainPanel.add(submitButton);
-
+		
+		// Create communal listener and add to relevant fields -- ipAddress field doesn't get one since you will always
+		// have to have entered the port number as well.
+		ConnectionDetailSubmitListener listener = new ConnectionDetailSubmitListener(this, ipAddressField, portField);
+		
+		portField.addActionListener(listener);
+		submitButton.addActionListener(listener);
+		
 		return mainPanel;
 	}
 
