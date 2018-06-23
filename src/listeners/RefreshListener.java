@@ -37,7 +37,6 @@ public class RefreshListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		comboBox.removeAllItems();
-		comboBox.addItem("Did this work?");
 		String[] newOptions = connection.getProductIDs();
 		for (String item : newOptions) {
 			comboBox.addItem(item);
