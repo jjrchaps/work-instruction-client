@@ -16,7 +16,7 @@ import listeners.ConnectionDetailSubmitListener;
  * to for work instructions. 
  * @author jameschapman
  */
-public class ConnectionDetailsPrompt {
+public class ConnectionDetailsPromptView {
 	/**
 	 * The frame that will contain the pane to input identifying code
 	 */
@@ -25,7 +25,7 @@ public class ConnectionDetailsPrompt {
 	/**
 	 * Creates a new instance of ConnectionDetailsPrompt and centers on display.
 	 */
-	public ConnectionDetailsPrompt() {
+	public ConnectionDetailsPromptView() {
 		mainFrame = new JFrame("Server Information");
 		mainFrame.add(createPanel());
 		mainFrame.pack();
@@ -75,7 +75,7 @@ public class ConnectionDetailsPrompt {
 	 * @param args Standard PSVM variable declaration, not used in this instance.
 	 */
 	public static void main(String[] args) {
-		ConnectionDetailsPrompt test = new ConnectionDetailsPrompt();
+		ConnectionDetailsPromptView test = new ConnectionDetailsPromptView();
 		test.setVisible();
 	}
 }

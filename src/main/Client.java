@@ -1,6 +1,6 @@
 package main;
 
-import views.ConnectionDetailsPrompt;
+import views.ConnectionDetailsPromptView;
 
 /**
  * This serves as the main entry point to the program. It opens a view to prompt the user for the
@@ -13,7 +13,7 @@ public class Client {
 	 * @param args Standard PSVM arguments, not currently used in this program.
 	 */
 	public static void main(String[] args) {
-		ConnectionDetailsPrompt prompt = new ConnectionDetailsPrompt();
+		ConnectionDetailsPromptView prompt = new ConnectionDetailsPromptView();
 		prompt.setVisible();
 	}
 }

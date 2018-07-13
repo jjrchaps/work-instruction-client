@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 import connections.ClientServerConnection;
-import views.ConnectionDetailsPrompt;
+import views.ConnectionDetailsPromptView;
 import views.BuildSelectionView;
 
 /**
@@ -22,7 +22,7 @@ public class ConnectionDetailSubmitListener implements ActionListener, KeyListen
 	/**
 	 * The view being displayed to the user prompting for the IP Address and port
 	 */
-	private ConnectionDetailsPrompt promptView;
+	private ConnectionDetailsPromptView promptView;
 
 	/**
 	 * The field containing the user entered IP Address
@@ -42,7 +42,7 @@ public class ConnectionDetailSubmitListener implements ActionListener, KeyListen
 	 * @param ipAddress The field where the user will enter the IP address of the server.
 	 * @param portNumber The port that the server is listening for connections on.
 	 */
-	public ConnectionDetailSubmitListener(ConnectionDetailsPrompt promptView, JTextField ipAddress,
+	public ConnectionDetailSubmitListener(ConnectionDetailsPromptView promptView, JTextField ipAddress,
 			JTextField portNumber){
 		this.promptView = promptView;
 		this.ipAddress = ipAddress;
